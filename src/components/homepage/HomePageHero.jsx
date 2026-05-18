@@ -55,12 +55,13 @@ const HomePageHero = () => {
   return (
     <div className="container mx-auto">
       <Swiper
-        spaceBetween={30}
+        spaceBetween={3}
         centeredSlides={true}
         autoplay={{
-          delay: 5500,
+          delay: 4500,
           disableOnInteraction: false,
         }}
+        loop={true}
         pagination={{
           clickable: true,
         }}

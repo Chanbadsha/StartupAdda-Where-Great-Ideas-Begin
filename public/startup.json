@@ -1,0 +1,104 @@
+[
+    {
+        "ideaTitle": "Smart Classroom AI",
+        "shortDescription": "AI-powered system that enhances classroom learning experience.",
+        "detailedDescription": "Smart Classroom AI transforms traditional education by integrating real-time lecture transcription, automated note generation, and student engagement tracking. It helps teachers identify struggling students and improve overall learning outcomes using AI insights.",
+        "category": "Education",
+        "tags": [
+            "AI",
+            "EdTech",
+            "Classroom",
+            "Automation"
+        ],
+        "imageURL": "https://i.ibb.co.com/Cp2p9S2n/ai-startup.png",
+        "estimatedBudget": "8000-15000 USD",
+        "targetAudience": "Schools, Teachers, Students",
+        "problemStatement": "Traditional classrooms lack real-time personalization and feedback systems.",
+        "proposedSolution": "Use AI to analyze classroom interactions and provide real-time learning support and insights."
+    },
+    {
+        "ideaTitle": "AI Freelance Matcher",
+        "shortDescription": "Platform that connects freelancers with perfect projects using AI.",
+        "detailedDescription": "AI Freelance Matcher uses intelligent algorithms to match freelancers with projects based on skills, experience, and past performance. It reduces hiring time and improves project success rates by ensuring better fit between clients and freelancers.",
+        "category": "Tech",
+        "tags": [
+            "Freelance",
+            "AI",
+            "Marketplace",
+            "Jobs"
+        ],
+        "imageURL": "https://i.ibb.co.com/fzZsDpqV/network.png",
+        "estimatedBudget": "10000-25000 USD",
+        "targetAudience": "Freelancers, Agencies, Businesses",
+        "problemStatement": "Freelancers struggle to find relevant and high-quality job opportunities.",
+        "proposedSolution": "Create an AI-based matching system that connects freelancers with ideal projects instantly."
+    },
+    {
+        "ideaTitle": "EcoWaste Tracker",
+        "shortDescription": "Smart waste management system for cities and communities.",
+        "detailedDescription": "EcoWaste Tracker is a smart waste monitoring system that helps cities optimize waste collection using IoT sensors and AI analytics. It tracks waste levels in real-time and suggests efficient collection routes.",
+        "category": "Environment",
+        "tags": [
+            "IoT",
+            "AI",
+            "Sustainability",
+            "Smart City"
+        ],
+        "imageURL": "https://i.ibb.co.com/fzZsDpqV/network.png",
+        "estimatedBudget": "15000-40000 USD",
+        "targetAudience": "Municipalities, Governments, Waste Companies",
+        "problemStatement": "Waste collection systems are often inefficient and waste resources.",
+        "proposedSolution": "Use IoT sensors and AI routing to optimize waste collection and reduce operational costs."
+    },
+    {
+        "ideaTitle": "AI Personal Finance Coach",
+        "shortDescription": "AI assistant that helps users manage money smarter.",
+        "detailedDescription": "This AI-powered finance coach analyzes spending habits, income, and financial goals to provide personalized budgeting tips, savings plans, and investment suggestions. It helps users improve financial discipline over time.",
+        "category": "Finance",
+        "tags": [
+            "AI",
+            "Finance",
+            "Budgeting",
+            "Savings"
+        ],
+        "imageURL": "https://i.ibb.co.com/SDbsWHsF/build.png",
+        "estimatedBudget": "5000-20000 USD",
+        "targetAudience": "Individuals, Young Professionals",
+        "problemStatement": "Most people struggle to manage personal finances effectively.",
+        "proposedSolution": "Provide AI-driven financial insights and personalized money management guidance."
+    },
+    {
+        "ideaTitle": "SkillBridge Platform",
+        "shortDescription": "A platform where learners can trade and learn skills.",
+        "detailedDescription": "SkillBridge is a peer-to-peer learning platform that allows users to exchange skills. For example, someone can teach coding in exchange for design lessons. It promotes collaborative and cost-free learning.",
+        "category": "Education",
+        "tags": [
+            "Learning",
+            "Community",
+            "Skills",
+            "Exchange"
+        ],
+        "imageURL": "https://i.ibb.co.com/fzZsDpqV/network.png",
+        "estimatedBudget": "3000-12000 USD",
+        "targetAudience": "Students, Creators, Professionals",
+        "problemStatement": "Skill learning platforms are often expensive and one-sided.",
+        "proposedSolution": "Enable users to learn by exchanging skills directly in a community-driven system."
+    },
+    {
+        "ideaTitle": "AI Content Studio",
+        "shortDescription": "All-in-one AI tool for creating marketing content.",
+        "detailedDescription": "AI Content Studio helps businesses generate blogs, ads, social media posts, and marketing copies using AI. It includes templates, tone customization, and SEO optimization to boost digital marketing performance.",
+        "category": "AI",
+        "tags": [
+            "AI",
+            "Content",
+            "Marketing",
+            "SaaS"
+        ],
+        "imageURL": "https://i.ibb.co.com/N2bBpX7N/growth.png",
+        "estimatedBudget": "12000-30000 USD",
+        "targetAudience": "Marketers, Agencies, Startups",
+        "problemStatement": "Creating high-quality marketing content is time-consuming and expensive.",
+        "proposedSolution": "Use AI to automate content creation with high-quality, optimized outputs."
+    }
+]

@@ -1,8 +1,8 @@
-import { Inter, Outfit } from "next/font/google";
+import { Outfit, Roboto } from "next/font/google";
 
 import "./globals.css";
 
-const inter = Inter({
+const inter = Roboto({
   variable: "--font-inter",
   subsets: ["latin"],
 });
