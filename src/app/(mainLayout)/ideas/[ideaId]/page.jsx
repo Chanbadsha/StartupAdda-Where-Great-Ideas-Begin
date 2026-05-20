@@ -1,7 +1,13 @@
 import { GetDataById } from "@/lib/data";
 import { Comments } from "@gravity-ui/icons";
-import { Button } from "@heroui/react";
-import { Eye, MessageCircle, ThumbsUp } from "lucide-react";
+import { Avatar, Badge, Button } from "@heroui/react";
+import {
+  Eye,
+  MessageCircle,
+  MessageCircleWarning,
+  Sparkles,
+  ThumbsUp,
+} from "lucide-react";
 import Image from "next/image";
 
 const IdeasDetailsPage = async ({ params }) => {
@@ -31,9 +37,9 @@ const IdeasDetailsPage = async ({ params }) => {
     createdAt,
     updatedAt,
   } = idea;
-
+  console.log(targetAudience, estimatedBudget);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mb-12">
       {/* Heading */}
       <div className=" bg-linear-to-tr from-[#4847d4] to-[#6939d4] text-white px-12 py-16 rounded-lg my-8">
         <section className="space-y-5">
@@ -91,11 +97,11 @@ const IdeasDetailsPage = async ({ params }) => {
       </div>
 
       {/* Main */}
-      <main className="grid grid-cols-1  lg:grid-cols-12 gap-4">
+      <main className="grid grid-cols-1  lg:grid-cols-12 gap-4 px-2 ">
         {/* Main Content */}
-        <section className="lg:col-span-8 border min-h-screen">
+        <section className="lg:col-span-8 space-y-6">
           {/* Author Section */}
-          <div className="flex flex-col gap-6 bg-white text-black px-12 py-5 shadow-lg lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex rounded-lg flex-col gap-6 bg-white text-black px-12 py-5 shadow-lg lg:flex-row lg:items-center lg:justify-between">
             {/* Left: Author Info */}
             <div className="flex gap-4 items-center flex-col md:flex-row">
               {/* Author Image */}
@@ -156,6 +162,336 @@ const IdeasDetailsPage = async ({ params }) => {
               </div>
             </div>
           </div>
+
+          {/* Banner Image */}
+          <div className="group my-6 relative overflow-hidden rounded-3xl">
+            {/* Image */}
+            <Image
+              src={coverImage}
+              width={1200}
+              height={800}
+              alt={ideaTitle}
+              className="h-105 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
+
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-violet-500/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+            {/* Content */}
+            <div className="absolute bottom-0 left-0 z-10 w-full p-8 md:p-10">
+              {/* Category */}
+              <span className="mb-4 inline-flex rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur-xl">
+                {category}
+              </span>
+
+              {/* Title */}
+              <h3 className="max-w-2xl text-3xl font-bold tracking-tight text-white md:text-5xl">
+                {ideaTitle}
+              </h3>
+
+              {/* Tagline */}
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
+                {tagline}
+              </p>
+            </div>
+          </div>
+
+          {/* Problem Section */}
+          <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm lg:p-8">
+            <div className="mb-5 flex items-center gap-3">
+              <Avatar
+                color="danger"
+                className="h-12 w-12 border border-red-200 bg-red-50"
+              >
+                <Avatar.Fallback>
+                  <MessageCircleWarning className="text-red-500" />
+                </Avatar.Fallback>
+              </Avatar>
+
+              <div>
+                <p className="text-sm font-medium text-red-500">Challenge</p>
+
+                <h2 className="text-2xl font-bold tracking-tight text-black lg:text-4xl">
+                  The Problem
+                </h2>
+              </div>
+            </div>
+
+            <p className="max-w-4xl text-base leading-relaxed text-black/70">
+              {problemStatement}
+            </p>
+          </section>
+
+          {/* Solution Section */}
+          <section className="rounded-3xl bg-[#f6f4ff] p-6 shadow-sm ring-1 ring-violet-100 lg:p-8">
+            <div className="mb-6 flex items-center gap-3">
+              <Avatar className="h-12 w-12 border border-violet-200 bg-violet-100">
+                <Avatar.Fallback>
+                  <Sparkles className="text-violet-600" />
+                </Avatar.Fallback>
+              </Avatar>
+
+              <div>
+                <p className="text-sm font-medium text-violet-500">
+                  Innovation
+                </p>
+
+                <h2 className="text-2xl font-bold tracking-tight text-black lg:text-4xl">
+                  The Solution
+                </h2>
+              </div>
+            </div>
+
+            {/* Solution Points */}
+            <ul className="mb-6 grid gap-3">
+              {proposedSolution.map((solution, ind) => (
+                <li
+                  key={ind}
+                  className="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 text-sm text-black/70 shadow-sm"
+                >
+                  <span className="mt-1 h-2 w-2 rounded-full bg-violet-500"></span>
+                  {solution}
+                </li>
+              ))}
+            </ul>
+
+            {/* Detailed Description */}
+            <p className="max-w-4xl leading-relaxed text-black/70">
+              {detailedDescription}
+            </p>
+          </section>
+
+          {/* Targeted Audience */}
+          <section className="flex flex-col gap-8 rounded-3xl border border-black/5 bg-white p-6 shadow-sm lg:flex-row lg:items-center lg:justify-between lg:p-8">
+            {/* Audience */}
+            <div className="flex-1">
+              {/* Heading */}
+              <div className="mb-5">
+                <p className="text-sm font-medium text-violet-500">Audience</p>
+
+                <h4 className="text-2xl font-bold tracking-tight text-black lg:text-3xl">
+                  Target Audience
+                </h4>
+              </div>
+
+              {/* Audience Tags */}
+              <ul className="flex flex-wrap gap-3">
+                {targetAudience.map((Audience, ind) => (
+                  <li key={ind}>
+                    <span
+                      className="
+              inline-flex
+              rounded-full
+              border border-violet-200
+              bg-violet-50
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-violet-700
+              transition-all
+              duration-300
+              hover:bg-violet-100
+            "
+                    >
+                      {Audience}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Budget */}
+            <div className="rounded-3xl bg-gradient-to-br from-violet-600 to-indigo-600 p-6 text-white shadow-lg lg:min-w-[280px]">
+              <p className="text-sm font-medium text-white/70">Funding Needs</p>
+
+              <h2 className="mt-2 text-4xl font-bold tracking-tight">
+                ${estimatedBudget.amount}
+              </h2>
+
+              <p className="mt-1 text-sm text-white/70">
+                Estimated budget for launching and scaling the startup idea.
+              </p>
+
+              <div className="mt-5 flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-xl">
+                <div>
+                  <p className="text-xs text-white/60">Funding Stage</p>
+
+                  <p className="font-semibold">
+                    {estimatedBudget.fundingStage}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/60">Timeline</p>
+
+                  <p className="font-semibold">{estimatedBudget.timeline}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Discussion Sections */}
+          {/* Discussion Section */}
+          <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm lg:p-8">
+            {/* Heading */}
+            <div className="mb-8 flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-violet-500">Community</p>
+
+                <h2 className="text-2xl font-bold tracking-tight text-black lg:text-4xl">
+                  Discussion & Feedback
+                </h2>
+              </div>
+
+              <div className="rounded-2xl bg-violet-50 px-4 py-2 text-sm font-medium text-violet-700">
+                {comments.length} Comments
+              </div>
+            </div>
+
+            {/* Add Comment */}
+            <div className="mb-8 rounded-3xl border border-black/5 bg-[#fafafa] p-5">
+              <textarea
+                placeholder="Share your thoughts about this startup idea..."
+                className="
+        min-h-[120px]
+        w-full
+        resize-none
+        rounded-2xl
+        border border-black/10
+        bg-white
+        p-4
+        text-sm
+        outline-none
+        transition-all
+        focus:border-violet-400
+        focus:ring-4
+        focus:ring-violet-100
+      "
+              />
+
+              <div className="mt-4 flex justify-end">
+                <button
+                  className="
+          rounded-2xl
+          bg-violet-600
+          px-6
+          py-3
+          text-sm
+          font-medium
+          text-white
+          transition-all
+          duration-300
+          hover:bg-violet-700
+        "
+                >
+                  Post Comment
+                </button>
+              </div>
+            </div>
+
+            {/* Comments */}
+            <div className="space-y-5">
+              {comments.map((comment, ind) => (
+                <div
+                  key={ind}
+                  className="
+          rounded-3xl
+          border border-black/5
+          bg-[#fcfcfc]
+          p-5
+          transition-all
+          duration-300
+          hover:border-violet-200
+          hover:shadow-md
+        "
+                >
+                  {/* Top */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex gap-4">
+                      {/* Avatar */}
+                      <Image
+                        src={comment?.user?.avatar}
+                        alt={comment?.user?.name}
+                        width={600}
+                        height={600}
+                        className="h-12 w-12 rounded-full object-cover"
+                      />
+
+                      {/* Info */}
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h4 className="font-semibold text-black">
+                            {comment?.user?.name}
+                          </h4>
+
+                          <span className="rounded-full bg-violet-50 px-2 py-1 text-xs font-medium text-violet-600">
+                            {comment?.user?.role}
+                          </span>
+                        </div>
+
+                        <p className="mt-1 text-xs text-black/40">
+                          {comment?.createdAt}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex gap-2">
+                      <button
+                        className="
+                rounded-xl
+                border border-black/10
+                px-3
+                py-1.5
+                text-xs
+                text-black/60
+                transition-all
+                hover:bg-black/5
+              "
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        className="
+                rounded-xl
+                border border-red-100
+                px-3
+                py-1.5
+                text-xs
+                text-red-500
+                transition-all
+                hover:bg-red-50
+              "
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Comment */}
+                  <p className="mt-5 leading-relaxed text-black/70">
+                    {comment?.comment}
+                  </p>
+
+                  {/* Bottom */}
+                  <div className="mt-5 flex items-center gap-5">
+                    <button className="text-sm font-medium text-violet-600 transition hover:text-violet-700">
+                      👍 {comment?.likes} Likes
+                    </button>
+
+                    <button className="text-sm text-black/50 transition hover:text-black">
+                      Reply
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
         </section>
         {/* Right Sidebar */}
         <aside className="lg:col-span-4 border h-screen"></aside>
