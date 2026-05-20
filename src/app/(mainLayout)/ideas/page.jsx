@@ -1,9 +1,10 @@
 import { Button, Input, Label, ListBox, Select } from "@heroui/react";
 import { Search } from "lucide-react";
 import { ChevronsExpandVertical } from "@gravity-ui/icons";
-import startUpIdea from "@/../public/startup.json";
-import StartUpCard from "@/components/shared/StartUpCard";
 import Image from "next/image";
+import { Suspense } from "react";
+import IdeasList from "@/utils/IdeaList";
+import CardLoadings from "@/utils/UiLoading";
 const categories = [
   { id: "ai", textValue: "AI" },
   { id: "saas", textValue: "SaaS" },
@@ -26,7 +27,7 @@ const categories = [
   { id: "realestate", textValue: "Real Estate" },
   { id: "other", textValue: "Other" },
 ];
-const IdeasPage = () => {
+const IdeasPage = async () => {
   return (
     <div className="container px-4 mx-auto pb-12">
       {/* Heading */}
@@ -131,11 +132,9 @@ const IdeasPage = () => {
       <main className="grid  grid-cols-1 lg:grid-cols-12 gap-8 mt-10">
         {/* Card Container */}
         <section className="lg:col-span-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {startUpIdea.map((idea, ind) => (
-              <StartUpCard key={ind} idea={idea} />
-            ))}
-          </div>
+          <Suspense fallback={<CardLoadings />}>
+            <IdeasList />
+          </Suspense>
         </section>
 
         {/* Sidebar */}

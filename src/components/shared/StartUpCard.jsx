@@ -3,6 +3,7 @@ import Image from "next/image";
 
 const StartUpCard = ({ idea }) => {
   const {
+    id,
     ideaTitle,
     shortDescription,
     category,
@@ -65,7 +66,7 @@ const StartUpCard = ({ idea }) => {
         {/* CTA */}
         <div className="flex justify-between items-center pt-2">
           <Link
-            href={`/ideas/${idea._id}`}
+            href={`/ideas/${idea.id}`}
             className="text-sm text-purple-600 font-medium hover:underline"
           >
             View Details →

@@ -2,7 +2,11 @@ import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import startUpIdea from "@/../public/startup.json";
 import StartUpCard from "../shared/StartUpCard";
-const TrendingStartup = () => {
+import { GetAllData } from "@/lib/data";
+import NoData from "@/utils/NoData";
+const TrendingStartup = async () => {
+  const startUpIdea = (await GetAllData()) || [];
+
   return (
     <div className="container mx-auto my-12">
       {/* Header Section */}
@@ -16,8 +20,8 @@ const TrendingStartup = () => {
           </p>
         </div>
         <Link
-          className="flex text-sm lg:text-lg justify-end pr-2 items-center gap-1"
-          href={"#"}
+          className="flex hover:text-[#8B5CF6] text-sm lg:text-lg justify-end pr-2 items-center gap-1"
+          href={"/ideas"}
         >
           View All Ideas
           <MoveRight width={16} />
@@ -25,10 +29,16 @@ const TrendingStartup = () => {
       </div>
 
       {/* Startup containers */}
-      <div className="grid mt-4 grid-cols-3 grid-rows-2  gap-12">
-        {startUpIdea.map((idea, ind) => (
-          <StartUpCard key={ind} idea={idea} />
-        ))}
+      <div>
+        {startUpIdea.length > 0 ? (
+          <div className="grid mt-4 grid-cols-3 grid-rows-2  gap-12">
+            {startUpIdea.map((idea, ind) => (
+              <StartUpCard key={ind} idea={idea} />
+            ))}
+          </div>
+        ) : (
+          <NoData />
+        )}
       </div>
     </div>
   );

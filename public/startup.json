@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "ideaTitle": "Smart Classroom AI",
         "shortDescription": "AI-powered system that enhances classroom learning experience.",
         "detailedDescription": "Smart Classroom AI transforms traditional education by integrating real-time lecture transcription, automated note generation, and student engagement tracking. It helps teachers identify struggling students and improve overall learning outcomes using AI insights.",
@@ -17,6 +18,7 @@
         "proposedSolution": "Use AI to analyze classroom interactions and provide real-time learning support and insights."
     },
     {
+        "id": 2,
         "ideaTitle": "AI Freelance Matcher",
         "shortDescription": "Platform that connects freelancers with perfect projects using AI.",
         "detailedDescription": "AI Freelance Matcher uses intelligent algorithms to match freelancers with projects based on skills, experience, and past performance. It reduces hiring time and improves project success rates by ensuring better fit between clients and freelancers.",
@@ -34,6 +36,7 @@
         "proposedSolution": "Create an AI-based matching system that connects freelancers with ideal projects instantly."
     },
     {
+        "id": 3,
         "ideaTitle": "EcoWaste Tracker",
         "shortDescription": "Smart waste management system for cities and communities.",
         "detailedDescription": "EcoWaste Tracker is a smart waste monitoring system that helps cities optimize waste collection using IoT sensors and AI analytics. It tracks waste levels in real-time and suggests efficient collection routes.",
@@ -51,6 +54,7 @@
         "proposedSolution": "Use IoT sensors and AI routing to optimize waste collection and reduce operational costs."
     },
     {
+        "id": 4,
         "ideaTitle": "AI Personal Finance Coach",
         "shortDescription": "AI assistant that helps users manage money smarter.",
         "detailedDescription": "This AI-powered finance coach analyzes spending habits, income, and financial goals to provide personalized budgeting tips, savings plans, and investment suggestions. It helps users improve financial discipline over time.",
@@ -68,6 +72,7 @@
         "proposedSolution": "Provide AI-driven financial insights and personalized money management guidance."
     },
     {
+        "id": 5,
         "ideaTitle": "SkillBridge Platform",
         "shortDescription": "A platform where learners can trade and learn skills.",
         "detailedDescription": "SkillBridge is a peer-to-peer learning platform that allows users to exchange skills. For example, someone can teach coding in exchange for design lessons. It promotes collaborative and cost-free learning.",
@@ -85,6 +90,7 @@
         "proposedSolution": "Enable users to learn by exchanging skills directly in a community-driven system."
     },
     {
+        "id": 6,
         "ideaTitle": "AI Content Studio",
         "shortDescription": "All-in-one AI tool for creating marketing content.",
         "detailedDescription": "AI Content Studio helps businesses generate blogs, ads, social media posts, and marketing copies using AI. It includes templates, tone customization, and SEO optimization to boost digital marketing performance.",
