@@ -2,13 +2,14 @@ import { Card, Link, Button } from "@heroui/react";
 import Image from "next/image";
 
 const StartUpCard = ({ idea }) => {
+  console.log(idea);
   const {
-    id,
+    _id,
     ideaTitle,
     shortDescription,
     category,
     tags,
-    imageURL,
+    coverImage,
     estimatedBudget,
     targetAudience,
   } = idea;
@@ -19,7 +20,7 @@ const StartUpCard = ({ idea }) => {
 
       <div className="relative h-52 mt-2 overflow-hidden rounded-lg  ">
         <Image
-          src={imageURL}
+          src={coverImage}
           alt={ideaTitle}
           width={600}
           className="h-full group-hover:scale-110  duration-700 absolute top-0 left-0 w-full rounded-lg bg-cover bg-center"
@@ -28,7 +29,7 @@ const StartUpCard = ({ idea }) => {
       </div>
 
       {/* Content */}
-      <div className="p-5 space-y-3">
+      <div className="p-5 flex flex-col   flex-1 space-y-3">
         {/* Category + Budget */}
         <div className="flex justify-between items-center">
           <span className="text-xs px-3 py-1 rounded-full bg-purple-100 text-purple-600 font-medium">
@@ -36,7 +37,9 @@ const StartUpCard = ({ idea }) => {
           </span>
 
           {estimatedBudget && (
-            <span className="text-xs text-gray-500">${estimatedBudget}</span>
+            <span className="text-xs text-gray-500">
+              ${estimatedBudget?.amount}
+            </span>
           )}
         </div>
 
@@ -49,7 +52,7 @@ const StartUpCard = ({ idea }) => {
         <p className="text-sm text-gray-600 line-clamp-2">{shortDescription}</p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex  flex-wrap gap-2">
           {tags?.map((tag, index) => (
             <span
               key={index}
@@ -61,12 +64,15 @@ const StartUpCard = ({ idea }) => {
         </div>
 
         {/* Audience */}
-        <p className="text-xs text-gray-500"> Target: {targetAudience}</p>
+        <p className="text-xs flex-1  text-gray-500">
+          {" "}
+          Target: {targetAudience}
+        </p>
 
         {/* CTA */}
-        <div className="flex justify-between items-center pt-2">
+        <div className="flex items-end  justify-between `pt-2">
           <Link
-            href={`/ideas/${idea.id}`}
+            href={`/ideas/${_id}`}
             className="text-sm text-purple-600 font-medium hover:underline"
           >
             View Details →
