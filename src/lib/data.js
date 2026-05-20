@@ -17,5 +17,7 @@ export const GetDataById = async (id) => {
     );
     const data = await res.json();
     return data || {};
-  } catch (error) {}
+  } catch (error) {
+    return [];
+  }
 };
