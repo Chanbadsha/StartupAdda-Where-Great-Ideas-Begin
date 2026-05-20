@@ -1,10 +1,12 @@
-import { GetDataById } from "@/lib/data";
+import { GetAllData, GetDataById } from "@/lib/data";
 import { Comments } from "@gravity-ui/icons";
 import { Avatar, Badge, Button } from "@heroui/react";
 import {
+  Bookmark,
   Eye,
   MessageCircle,
   MessageCircleWarning,
+  Share,
   Sparkles,
   ThumbsUp,
 } from "lucide-react";
@@ -13,6 +15,7 @@ import Image from "next/image";
 const IdeasDetailsPage = async ({ params }) => {
   let { ideaId } = await params;
   const idea = await GetDataById(ideaId);
+  const relatedIdeas = await GetAllData();
 
   const {
     _id,
@@ -33,7 +36,7 @@ const IdeasDetailsPage = async ({ params }) => {
     startupPotential,
     status,
     comments,
-    relatedIdeas,
+
     createdAt,
     updatedAt,
   } = idea;
@@ -97,7 +100,7 @@ const IdeasDetailsPage = async ({ params }) => {
       </div>
 
       {/* Main */}
-      <main className="grid grid-cols-1  lg:grid-cols-12 gap-4 px-2 ">
+      <main className="grid grid-cols-1 mt-6  lg:grid-cols-12 gap-4 px-2 ">
         {/* Main Content */}
         <section className="lg:col-span-8 space-y-6">
           {/* Author Section */}
@@ -357,7 +360,7 @@ const IdeasDetailsPage = async ({ params }) => {
               <textarea
                 placeholder="Share your thoughts about this startup idea..."
                 className="
-        min-h-[120px]
+        min-h-30
         w-full
         resize-none
         rounded-2xl
@@ -494,7 +497,168 @@ const IdeasDetailsPage = async ({ params }) => {
           </section>
         </section>
         {/* Right Sidebar */}
-        <aside className="lg:col-span-4 border h-screen"></aside>
+        <aside className="lg:col-span-4 space-y-6">
+          {/* Upvote section */}
+          <section className="rounded-[28px] border border-black/5 bg-white p-5 shadow-[0_10px_40px_rgba(0,0,0,0.06)]">
+            {/* Upvote Button */}
+            <button
+              className="
+      flex w-full items-center justify-center gap-2
+      rounded-2xl
+      bg-linear-to-r from-indigo-600 to-violet-600
+      px-6 py-5
+      text-base font-semibold text-white
+      shadow-lg
+      transition-all duration-300
+      hover:scale-[1.02]
+      hover:shadow-violet-200
+    "
+            >
+              <span>
+                <ThumbsUp />
+              </span>{" "}
+              Upvote Idea
+            </button>
+
+            {/* Actions */}
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <button
+                className="
+        flex items-center justify-center gap-2
+        rounded-2xl
+        border border-black/10
+        bg-white
+        px-4 py-3
+        text-sm font-medium text-black/70
+        transition-all duration-300
+        hover:bg-black/5
+      "
+              >
+                <span>
+                  <Bookmark />
+                </span>{" "}
+                Bookmark
+              </button>
+
+              <button
+                className="
+        flex items-center justify-center gap-2
+        rounded-2xl
+        border border-black/10
+        bg-white
+        px-4 py-3
+        text-sm font-medium text-black/70
+        transition-all duration-300
+        hover:bg-black/5
+      "
+              >
+                <span>
+                  <Share />
+                </span>{" "}
+                Share
+              </button>
+            </div>
+
+            {/* Divider */}
+            <div className="my-6 h-px w-full bg-black/5" />
+
+            {/* Stats */}
+            <div className="space-y-5">
+              {/* Views */}
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-black/40">Views</p>
+
+                <p className="font-semibold text-black/80">14,208</p>
+              </div>
+
+              {/* Posted */}
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-black/40">Posted</p>
+
+                <p className="font-semibold text-black/80">Oct 12, 2023</p>
+              </div>
+
+              {/* Impact */}
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-black/40">Impact Score</p>
+
+                <p className="font-bold text-indigo-600">9.4/10</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Related Ideas */}
+          <section className="rounded-[28px] border border-black/5 bg-white p-5 shadow-[0_10px_40px_rgba(0,0,0,0.06)]">
+            {/* Heading */}
+            <div className="mb-5">
+              <h2 className="text-2xl font-bold tracking-tight text-black">
+                Related Ideas
+              </h2>
+
+              <p className="mt-1 text-sm text-black/50">
+                Similar startup concepts you may like
+              </p>
+            </div>
+
+            {/* Related Ideas List */}
+            <div className="space-y-4">
+              {relatedIdeas.map((idea, ind) => (
+                <div
+                  key={ind}
+                  className="
+          group
+          flex gap-4
+          rounded-2xl
+          border border-black/5
+          bg-[#fafafa]
+          p-3
+          transition-all duration-300
+          hover:border-violet-200
+          hover:bg-violet-50/40
+          hover:shadow-md
+        "
+                >
+                  {/* Thumbnail */}
+                  <div
+                    className="
+            flex h-16 w-16 shrink-0 items-center justify-center
+            rounded-2xl
+            bg-linear-to-br from-violet-500 to-indigo-600
+            text-white
+            shadow-sm
+          "
+                  >
+                    <Image
+                      src={idea?.coverImage}
+                      alt={idea?.ideaTitle}
+                      width={100}
+                      height={100}
+                      className="h-full w-full rounded-2xl object-cover"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-1 flex-col justify-center">
+                    <h3
+                      className="
+              line-clamp-1
+              text-sm font-semibold text-black
+              transition-colors duration-300
+              group-hover:text-violet-700
+            "
+                    >
+                      {idea?.title}
+                    </h3>
+
+                    <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-black/50">
+                      {idea?.shortDescription}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </aside>
       </main>
     </div>
   );
