@@ -22,7 +22,7 @@ const RegisterPage = () => {
       email: data?.email,
       password: data?.password,
       image: data?.imageUrl,
-      callbackURL: `${process.env.BETTER_AUTH_URL}`,
+      callbackURL: process.env.BETTER_AUTH_URL,
     });
     console.log(userData, error);
   };

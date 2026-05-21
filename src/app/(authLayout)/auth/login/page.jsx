@@ -22,7 +22,7 @@ const LoginPage = () => {
       email: data?.email,
       password: data?.password,
       rememberMe: true,
-      callbackURL: `${process.env.BETTER_AUTH_URL}`,
+      callbackURL: process.env.BETTER_AUTH_URL,
     });
     console.log(userData, error);
   };
