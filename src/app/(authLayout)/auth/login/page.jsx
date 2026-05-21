@@ -196,7 +196,7 @@ const LoginPage = () => {
 
               {/* Google Login */}
               <button
-                onClick={handleGoogleLogins}
+                onClick={handleGoogleLogin}
                 type="button"
                 className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 py-3 font-medium transition hover:bg-slate-50"
               >
