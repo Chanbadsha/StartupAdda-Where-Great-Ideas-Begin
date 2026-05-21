@@ -22,7 +22,7 @@ const LoginPage = () => {
       email: data?.email,
       password: data?.password,
       rememberMe: true,
-      callbackURL: "http://localhost:3000/",
+      callbackURL: `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}`,
     });
     console.log(userData, error);
   };

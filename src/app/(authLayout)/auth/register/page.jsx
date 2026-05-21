@@ -22,7 +22,7 @@ const RegisterPage = () => {
       email: data?.email,
       password: data?.password,
       image: data?.imageUrl,
-      callbackURL: "http://localhost:3000/auth/login",
+      callbackURL: `${process.env.NEXT_PUBLIC_BETTER_AUTH_URL}`,
     });
     console.log(userData, error);
   };
