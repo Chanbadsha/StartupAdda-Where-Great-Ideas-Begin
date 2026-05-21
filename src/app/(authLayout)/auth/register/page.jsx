@@ -29,6 +29,15 @@ const RegisterPage = () => {
 
   // watch input value by passing the name of it
   const password = watch("password");
+
+  // Google Login
+
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+    console.log(data);
+  };
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-50">
       {/* Background Blur */}
@@ -292,6 +301,7 @@ const RegisterPage = () => {
 
               {/* Google Login */}
               <button
+                onClick={handleGoogleLogin}
                 type="button"
                 className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 py-3 font-medium transition hover:bg-slate-50"
               >

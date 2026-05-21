@@ -11,9 +11,7 @@ const ForgetPassword = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const onSubmit = (data) => {};
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50">

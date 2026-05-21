@@ -17,14 +17,20 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const { data: userData, error } = await authClient.signIn.email({
       email: data?.email,
       password: data?.password,
       rememberMe: true,
       callbackURL: process.env.BETTER_AUTH_URL,
     });
-    console.log(userData, error);
+  };
+
+  // Google Login
+
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -190,6 +196,7 @@ const LoginPage = () => {
 
               {/* Google Login */}
               <button
+                onClick={handleGoogleLogins}
                 type="button"
                 className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 py-3 font-medium transition hover:bg-slate-50"
               >
