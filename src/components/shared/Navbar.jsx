@@ -172,16 +172,18 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-4">
               <Link
-                href="/profile"
+                href="/auth/login"
                 className="hidden md:block text-sm md:text-base font-medium text-gray-600 hover:text-purple-600 transition"
               >
                 Login
               </Link>
 
               {/* Get Started Button */}
-              <Button className="bg-linear-to-tr from-[#160beb] to-[#544dd3] text-white font-medium px-4 py-2 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300">
-                Get Started
-              </Button>
+              <Link className={"no-underline"} href="/auth/register">
+                <Button className="bg-linear-to-tr from-[#160beb] to-[#544dd3] text-white font-medium px-4 py-2 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           )}
         </div>

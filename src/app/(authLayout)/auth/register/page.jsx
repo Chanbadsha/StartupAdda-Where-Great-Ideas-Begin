@@ -1,7 +1,7 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
-// import { FcGoogle } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff, Lightbulb, Rocket, Users } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
@@ -295,7 +295,7 @@ const RegisterPage = () => {
                 type="button"
                 className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 py-3 font-medium transition hover:bg-slate-50"
               >
-                {/* <FcGoogle size={22} /> */}
+                <FcGoogle size={22} />
                 Continue with Google
               </button>
             </form>
