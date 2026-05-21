@@ -1,8 +1,6 @@
 export const GetAllData = async () => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DATABASE_API_URL}/ideas`,
-    );
+    const res = await fetch(`${process.env.DATABASE_API_URL}/ideas`);
     const data = await res.json();
     return data || [];
   } catch (error) {
@@ -13,9 +11,7 @@ export const GetAllData = async () => {
 
 export const GetDataById = async (id) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DATABASE_API_URL}/ideas/${id}`,
-    );
+    const res = await fetch(`${process.env.DATABASE_API_URL}/ideas/${id}`);
     const data = await res.json();
     return data || {};
   } catch (error) {
