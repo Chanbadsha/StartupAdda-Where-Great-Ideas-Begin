@@ -110,8 +110,11 @@ const IdeasDetailsPage = async ({ params }) => {
               {/* Author Image */}
               <div className="shrink-0">
                 <Image
-                  src={creator?.avatar}
-                  alt={creator?.name}
+                  src={
+                    creator?.avatar?.trim() ||
+                    "https://i.ibb.co.com/3mzffnvm/user.jpg"
+                  }
+                  alt={creator?.name?.trim() || "Unknown User"}
                   width={120}
                   height={120}
                   className="h-24 w-24 rounded-full border-2 border-[#4847d4] p-1 object-cover"
@@ -121,21 +124,23 @@ const IdeasDetailsPage = async ({ params }) => {
               {/* Author Details */}
               <div className="space-y-1">
                 <h2 className="text-lg font-semibold text-black">
-                  {creator?.name}
+                  {creator?.name?.trim() || "Anonymous User"}
                 </h2>
 
-                <p className="text-xs text-black/50">{creator?.username}</p>
+                <p className="text-xs text-black/50">
+                  {creator?.username?.trim() || "@unknown"}
+                </p>
 
                 <p className="text-sm font-medium text-violet-500">
-                  {creator?.role}
+                  {creator?.role?.trim() || "Member"}
                 </p>
 
                 <p className="text-sm text-black/60 leading-relaxed max-w-md">
-                  {creator?.bio}
+                  {creator?.bio?.trim() || "No bio available"}
                 </p>
 
                 <p className="flex items-center gap-1 text-xs text-black/40">
-                  📍 {creator?.location}
+                  📍 {creator?.location?.trim() || "Location not set"}
                 </p>
               </div>
             </div>

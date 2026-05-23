@@ -247,7 +247,7 @@ const Navbar = () => {
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
             {navLinks.map((link, ind) => (
-              <NavLinkItem key={ind} link={link} user={users}></NavLinkItem>
+              <NavLinkItem key={ind} link={link} user={user}></NavLinkItem>
             ))}
           </ul>
         </div>
