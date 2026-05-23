@@ -2,7 +2,6 @@ import { Card, Link, Button } from "@heroui/react";
 import Image from "next/image";
 
 const StartUpCard = ({ idea }) => {
-  console.log(idea);
   const {
     _id,
     ideaTitle,

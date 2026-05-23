@@ -18,3 +18,5 @@ export const GetDataById = async (id) => {
     return {};
   }
 };
+
+// export const GetUser = async () => {};

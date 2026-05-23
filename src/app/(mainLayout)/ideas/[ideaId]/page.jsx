@@ -40,7 +40,7 @@ const IdeasDetailsPage = async ({ params }) => {
     createdAt,
     updatedAt,
   } = idea;
-  console.log(targetAudience, estimatedBudget);
+
   return (
     <div className="container mx-auto mb-12">
       {/* Heading */}

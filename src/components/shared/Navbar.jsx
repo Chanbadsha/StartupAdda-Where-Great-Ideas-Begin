@@ -1,17 +1,15 @@
 "use client";
 
-import { Link, Button, Badge, Avatar } from "@heroui/react";
-import { useState } from "react";
+import { Link, Button, Badge, Avatar, Label, Dropdown } from "@heroui/react";
+import { useEffect, useState } from "react";
 import logo from "@/../public/logo.png";
 import Image from "next/image";
 import NavLinkItem from "@/utils/NavLinks";
-import {
-  Bell,
-  BellDot,
-  CircleAlert,
-  CircleUser,
-  CircleUserRound,
-} from "lucide-react";
+import { ArrowUpRightFromSquare, Bell, CircleUserRound } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { Gear, Persons } from "@gravity-ui/icons";
+import toast from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 const navLinks = [
   {
@@ -35,28 +33,28 @@ const navLinks = [
     private: false,
     authOnly: false,
   },
-  {
-    name: "trending",
-    path: "/trending",
-    title: "Trending",
-    private: false,
-    authOnly: false,
-  },
+  // {
+  //   name: "trending",
+  //   path: "/trending",
+  //   title: "Trending",
+  //   private: false,
+  //   authOnly: false,
+  // },
 
-  //   {
-  //     name: "addIdea",
-  //     path: "/add-idea",
-  //     title: "Add Idea",
-  //     private: true,
-  //     authOnly: true,
-  //   },
-  //   {
-  //     name: "myIdeas",
-  //     path: "/my-ideas",
-  //     title: "My Ideas",
-  //     private: true,
-  //     authOnly: true,
-  //   },
+  {
+    name: "addIdea",
+    path: "/add-idea",
+    title: "Add Idea",
+    private: true,
+    authOnly: true,
+  },
+  {
+    name: "myIdeas",
+    path: "/my-ideas",
+    title: "My Ideas",
+    private: true,
+    authOnly: true,
+  },
   //   {
   //     name: "myInteractions",
   //     path: "/my-interactions",
@@ -84,7 +82,15 @@ const navLinks = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const user = false;
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user || null;
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    toast.success("You have been signed out");
+  };
+
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
       <header className="mx-auto flex h-16 container items-center justify-between px-6">
@@ -135,7 +141,7 @@ const Navbar = () => {
           </div>
           <ul className="hidden items-center gap-4 md:flex">
             {navLinks.map((link, ind) => (
-              <NavLinkItem key={ind} link={link}></NavLinkItem>
+              <NavLinkItem key={ind} link={link} user={user}></NavLinkItem>
             ))}
           </ul>
         </div>
@@ -160,14 +166,62 @@ const Navbar = () => {
                 </Badge.Anchor>
               </span>
 
-              <Link
-                href="/profile"
-                className="hidden md:block text-sm md:text-base font-medium text-gray-600 hover:text-purple-600 transition"
-              >
-                <Avatar>
-                  <CircleUser />
-                </Avatar>
-              </Link>
+              {/* User Icon */}
+
+              <Dropdown>
+                <Dropdown.Trigger className="rounded-full">
+                  <Avatar>
+                    <Avatar.Image alt="Junior Garcia" src={user?.image} />
+                    <Avatar.Fallback delayMs={6000}>
+                      {" "}
+                      <CircleUserRound />
+                    </Avatar.Fallback>
+                  </Avatar>
+                </Dropdown.Trigger>
+                <Dropdown.Popover>
+                  <div className="px-3 pt-3 pb-1">
+                    <div className="flex items-center gap-2">
+                      <Avatar size="sm">
+                        <Avatar.Image alt="Jane" src={user?.image} />
+                        <Avatar.Fallback delayMs={60000}>
+                          <CircleUserRound />
+                        </Avatar.Fallback>
+                      </Avatar>
+                      <div className="flex flex-col gap-0">
+                        <p className="text-sm leading-5 font-medium">
+                          {user?.name}
+                        </p>
+                        <p className="text-xs leading-none text-muted">
+                          {user?.email}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      id="dashboard"
+                      href="dashboard"
+                      textValue="Dashboard"
+                    >
+                      <Label>Dashboard</Label>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item
+                      id="logout"
+                      textValue="Logout"
+                      variant="danger"
+                    >
+                      <div
+                        onClick={handleLogout}
+                        className="flex w-full items-center justify-between gap-2"
+                      >
+                        <Label>Log Out</Label>
+                        <ArrowUpRightFromSquare className="size-3.5 text-danger" />
+                      </div>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
             </div>
           ) : (
             <div className="flex items-center gap-4">
@@ -188,11 +242,12 @@ const Navbar = () => {
           )}
         </div>
       </header>
+
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
             {navLinks.map((link, ind) => (
-              <NavLinkItem key={ind} link={link}></NavLinkItem>
+              <NavLinkItem key={ind} link={link} user={users}></NavLinkItem>
             ))}
           </ul>
         </div>

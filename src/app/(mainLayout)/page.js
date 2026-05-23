@@ -1,7 +1,5 @@
 import HomePageHero from "@/components/homepage/HomePageHero";
 import TrendingStartup from "@/components/homepage/TrendingStartup";
-import React, { Suspense } from "react";
-import Loading from "./loading";
 
 const HomePage = () => {
   return (

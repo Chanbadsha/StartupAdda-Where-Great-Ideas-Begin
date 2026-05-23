@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NavLinkItem = ({ link }) => {
+const NavLinkItem = ({ link, user }) => {
   const pathname = usePathname();
   const isActive = pathname === link.path;
 
   return (
-    <li>
+    <li className={`${user ? "flex" : "hidden"}`}>
       <Link
         href={link.path}
         className={`relative font-outfit text-sm md:text-base xl:text-lg  transition-all duration-300 ease-in-out

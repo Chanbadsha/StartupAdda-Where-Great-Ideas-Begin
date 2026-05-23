@@ -6,6 +6,8 @@ import { Eye, EyeOff, Lightbulb, Users, Rocket } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { redirect, useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,16 +25,24 @@ const LoginPage = () => {
       rememberMe: true,
       callbackURL: process.env.BETTER_AUTH_URL,
     });
+    if (userData?.token) {
+      toast.success("Welcome back to StartupAdda!");
+    } else {
+      toast(error?.message || "Operation failed ", { icon: "❌" });
+    }
   };
 
-  // Google Login
+  const router = useRouter();
 
   const handleGoogleLogin = async () => {
-    const data = await authClient.signIn.social({
-      provider: "google",
-    });
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+      });
+    } catch (error) {
+      toast.error("Google sign-in failed");
+    }
   };
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-50">
       {/* Background Blur */}

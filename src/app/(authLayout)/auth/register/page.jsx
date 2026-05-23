@@ -16,7 +16,6 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
     const { data: userData, error } = await authClient.signUp.email({
       name: data?.fullName,
       email: data?.email,
@@ -24,7 +23,6 @@ const RegisterPage = () => {
       image: data?.imageUrl,
       callbackURL: process.env.BETTER_AUTH_URL,
     });
-    console.log(userData, error);
   };
 
   // watch input value by passing the name of it
@@ -36,7 +34,6 @@ const RegisterPage = () => {
     const data = await authClient.signIn.social({
       provider: "google",
     });
-    console.log(data);
   };
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-50">
