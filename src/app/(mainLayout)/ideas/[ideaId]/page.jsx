@@ -68,7 +68,7 @@ const IdeasDetailsPage = async ({ params }) => {
               <ThumbsUp size={16} className="text-violet-400" />
               <span className="text-sm text-white/70">
                 <span className="text-white font-medium">
-                  {engagement?.likes}
+                  {engagement?.likes || 0}
                 </span>{" "}
                 Upvotes
               </span>
@@ -79,7 +79,7 @@ const IdeasDetailsPage = async ({ params }) => {
               <MessageCircle size={16} className="text-cyan-400" />
               <span className="text-sm text-white/70">
                 <span className="text-white font-medium">
-                  {engagement?.comments}
+                  {engagement?.comments || 0}
                 </span>{" "}
                 Comments
               </span>
@@ -90,7 +90,7 @@ const IdeasDetailsPage = async ({ params }) => {
               <Eye size={16} className="text-emerald-400" />
               <span className="text-sm text-white/70">
                 <span className="text-white font-medium">
-                  {engagement?.views}
+                  {engagement?.views || 0}
                 </span>{" "}
                 Views
               </span>
@@ -337,7 +337,6 @@ const IdeasDetailsPage = async ({ params }) => {
             </div>
           </section>
 
-          {/* Discussion Sections */}
           {/* Discussion Section */}
           <section className="rounded-3xl border border-black/5 bg-white p-6 shadow-sm lg:p-8">
             {/* Heading */}
