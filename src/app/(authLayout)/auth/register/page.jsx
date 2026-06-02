@@ -5,6 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Eye, EyeOff, Lightbulb, Rocket, Users } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,14 +17,32 @@ const RegisterPage = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
   const onSubmit = async (data) => {
-    const { data: userData, error } = await authClient.signUp.email({
-      name: data?.fullName,
-      email: data?.email,
-      password: data?.password,
-      image: data?.imageUrl,
-      callbackURL: process.env.BETTER_AUTH_URL,
-    });
+    const toastId = toast.loading("Creating account...");
+
+    try {
+      const { data: userData, error } = await authClient.signUp.email({
+        name: data?.fullName,
+        email: data?.email,
+        password: data?.password,
+        image: data?.imageUrl,
+        callbackURL: process.env.BETTER_AUTH_URL,
+      });
+
+      if (error) {
+        toast(error.message || "Signup failed", { id: toastId, icon: "❌" });
+        return;
+      }
+
+      toast.success("Account created successfully!", { id: toastId });
+      setTimeout(() => {
+        router.push("/");
+      }, 800);
+    } catch (err) {
+      console.error(err);
+      toast("Something went wrong", { id: toastId, icon: "❌" });
+    }
   };
 
   // watch input value by passing the name of it
@@ -31,9 +51,26 @@ const RegisterPage = () => {
   // Google Login
 
   const handleGoogleLogin = async () => {
-    const data = await authClient.signIn.social({
-      provider: "google",
-    });
+    const toastId = toast.loading("Signing in with Google...");
+
+    try {
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
+
+      if (!data) {
+        toast.error("Google login failed", { id: toastId });
+        return;
+      }
+      setTimeout(() => {
+        toast.success("Login successful!", { id: toastId });
+      }, 100);
+
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong", { id: toastId });
+    }
   };
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-50">

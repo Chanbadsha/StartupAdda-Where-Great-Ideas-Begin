@@ -1,3 +1,5 @@
+import { revalidateTag } from "next/cache";
+
 export const postCommentAction = async (commentInfo, formData) => {
   "use server";
 
@@ -16,8 +18,10 @@ export const postCommentAction = async (commentInfo, formData) => {
       body: JSON.stringify(commentList),
     });
     const data = await res.json();
-    console.log(data.data);
-
+    console.log();
+    if (data.data.acknowledged === true) {
+      revalidateTag("/ideas/:ideaId");
+    }
     return data || [];
   } catch (error) {
     console.log(error);

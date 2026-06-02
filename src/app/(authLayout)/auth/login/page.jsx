@@ -19,28 +19,46 @@ const LoginPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { data: userData, error } = await authClient.signIn.email({
-      email: data?.email,
-      password: data?.password,
-      rememberMe: true,
-      callbackURL: process.env.BETTER_AUTH_URL,
-    });
-    if (userData?.token) {
-      toast.success("Welcome back to StartupAdda!");
-    } else {
-      toast(error?.message || "Operation failed ", { icon: "❌" });
-    }
+    const toastId = toast.loading("Signing you in...");
+
+    try {
+      const { data: userData, error } = await authClient.signIn.email({
+        email: data?.email,
+        password: data?.password,
+        rememberMe: true,
+        callbackURL: process.env.BETTER_AUTH_URL,
+      });
+      if (error) {
+        toast(error?.message || "Operation failed ", {
+          id: toastId,
+          icon: "❌",
+        });
+        return;
+      } else {
+        toast.success("Welcome back to StartupAdda!", { id: toastId });
+      }
+    } catch (error) {}
   };
 
-  const router = useRouter();
-
   const handleGoogleLogin = async () => {
+    const toastId = toast.loading("Signing in with Google...");
+
     try {
-      await authClient.signIn.social({
+      const data = await authClient.signIn.social({
         provider: "google",
       });
+
+      if (!data) {
+        toast.error("Google login failed", { id: toastId });
+        return;
+      }
+
+      setTimeout(() => {
+        toast.success("Login successful!", { id: toastId });
+      }, 200);
     } catch (error) {
-      toast.error("Google sign-in failed");
+      console.error(error);
+      toast.error("Something went wrong", { id: toastId });
     }
   };
   return (
