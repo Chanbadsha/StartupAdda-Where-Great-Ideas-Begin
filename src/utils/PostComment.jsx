@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { postCommentAction } from "@/lib/actions";
+import { editCommentAction, postCommentAction } from "@/lib/actions";
 import { auth } from "@/lib/auth";
 import Image from "next/image";
 import CommentsInfo from "@/components/shared/CommentsInfo";
@@ -71,7 +71,11 @@ const PostComment = async ({ comments, id }) => {
       {/* Comments */}
       <div className="space-y-5">
         {comments.map((comment, ind) => (
-          <CommentsInfo key={ind} comment={comment}></CommentsInfo>
+          <CommentsInfo
+            editCommentAction={editCommentAction}
+            key={ind}
+            comment={comment}
+          ></CommentsInfo>
         ))}
       </div>
     </section>

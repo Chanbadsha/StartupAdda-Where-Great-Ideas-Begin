@@ -1,6 +1,11 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 
-const CommentsInfo = ({ comment }) => {
+const CommentsInfo = ({ editCommentAction, comment, onUpdate }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editText, setEditText] = useState(comment?.comment);
+
   const timeAgo = (date) => {
     // eslint-disable-next-line react-hooks/purity
     const diff = Date.now() - new Date(date).getTime();
@@ -14,96 +19,82 @@ const CommentsInfo = ({ comment }) => {
     if (hours < 24) return `${hours}h ago`;
     return `${days}d ago`;
   };
+
+  const handleSave = async () => {
+    await editCommentAction(comment._id, editText);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setEditText(comment?.comment);
+    setIsEditing(false);
+  };
+
   return (
-    <div
-      className="
-            rounded-3xl
-            border border-black/5
-            bg-[#fcfcfc]
-            p-5
-            transition-all
-            duration-300
-            hover:border-violet-200
-            hover:shadow-md
-          "
-    >
+    <div className="rounded-3xl border bg-[#fcfcfc] p-5">
       {/* Top */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex gap-4">
-          {/* Avatar */}
           <Image
-            src={comment?.user?.image || "https://ibb.co.com/zVJ88zFV"}
+            src={comment?.user?.image}
             alt={comment?.user?.name}
-            width={600}
-            height={600}
-            className="h-12 w-12 rounded-full object-cover"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full"
           />
 
-          {/* Info */}
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <h4 className="font-semibold text-black">
-                {comment?.user?.name}
-              </h4>
-
-              <span className="rounded-full bg-violet-50 px-2 py-1 text-xs font-medium text-violet-600">
-                {comment?.user?.role}
-              </span>
-            </div>
-
-            <p className="mt-1 text-xs text-black/40">
+            <h4 className="font-semibold">{comment?.user?.name}</h4>
+            <span
+              title={new Date(comment?.createdAt).toLocaleString()}
+              className="rounded-full bg-black/5 px-2 py-1 text-[10px] text-black/50"
+            >
               {timeAgo(comment?.createdAt)}
-            </p>
+            </span>
           </div>
         </div>
 
         {/* Actions */}
         <div className="flex gap-2">
-          <button
-            className="
-                  rounded-xl
-                  border border-black/10
-                  px-3
-                  py-1.5
-                  text-xs
-                  text-black/60
-                  transition-all
-                  hover:bg-black/5
-                "
-          >
-            Edit
-          </button>
+          {!isEditing ? (
+            <button
+              onClick={() => setIsEditing(true)}
+              className="rounded-xl border px-3 py-1.5 text-xs"
+            >
+              Edit
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={handleSave}
+                className="rounded-xl bg-green-500 px-3 py-1.5 text-xs text-white"
+              >
+                Save
+              </button>
 
-          <button
-            className="
-                  rounded-xl
-                  border border-red-100
-                  px-3
-                  py-1.5
-                  text-xs
-                  text-red-500
-                  transition-all
-                  hover:bg-red-50
-                "
-          >
-            Delete
-          </button>
+              <button
+                onClick={handleCancel}
+                className="rounded-xl border px-3 py-1.5 text-xs"
+              >
+                Cancel
+              </button>
+            </>
+          )}
         </div>
       </div>
 
-      {/* Comment */}
-      <p className="mt-5 leading-relaxed text-black/70">{comment?.comment}</p>
-
-      {/* Bottom */}
-      <div className="mt-5 flex items-center gap-5">
-        {/* <button className="text-sm font-medium ">{comment?.likes} Likes</button> */}
-
-        <button className="text-sm text-black/50 transition hover:text-black">
-          Likes
-        </button>
-        <button className="text-sm text-black/50 transition hover:text-black">
-          Reply
-        </button>
+      {/* Comment Body */}
+      <div className="mt-5">
+        {!isEditing ? (
+          <p className="text-black/70">{comment?.comment}</p>
+        ) : (
+          <textarea
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+            className="w-full rounded-xl border p-3 text-sm outline-none focus:border-violet-300"
+            rows={3}
+          />
+        )}
       </div>
     </div>
   );

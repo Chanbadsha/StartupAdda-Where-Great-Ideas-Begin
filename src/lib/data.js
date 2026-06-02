@@ -4,7 +4,6 @@ export const GetAllData = async () => {
     const data = await res.json();
     return data || [];
   } catch (error) {
-    console.log(error);
     return [];
   }
 };
@@ -31,7 +30,6 @@ export const PostData = async (Postdata) => {
     const data = await res.json();
     return data || [];
   } catch (error) {
-    console.log(error);
     return [];
   }
 };

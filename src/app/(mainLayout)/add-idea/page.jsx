@@ -10,7 +10,7 @@ import { PostData } from "@/lib/data";
 const AddIdeaPage = () => {
   const { data } = authClient.useSession();
   const users = data?.user;
-  // console.log(users);
+
   const getUserName = (name) => {
     return `@${name.toLowerCase().trim().split(" ").join(".")}`;
   };
@@ -28,8 +28,6 @@ const AddIdeaPage = () => {
       proposedSolution: data.proposedSolution?.split(",").map((t) => t.trim()),
       targetAudience: data.targetAudience?.split(",").map((t) => t.trim()),
 
-      // object structure
-
       estimatedBudget: {
         amount: Number(data.estimatedBudget) || 1000,
         currency: "USD",
@@ -37,7 +35,6 @@ const AddIdeaPage = () => {
         fundingStage: "Seed",
       },
 
-      // optional future fields
       gallery: [],
       engagement: {},
       comments: [],
@@ -52,9 +49,7 @@ const AddIdeaPage = () => {
       status: "pending",
     };
 
-    // console.log(formattedData);
     const postInfo = await PostData(formattedData);
-    console.log(postInfo);
   };
   return (
     <main className="relative min-h-screen bg-slate-50 overflow-hidden">
