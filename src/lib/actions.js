@@ -54,3 +54,24 @@ export const editCommentAction = async (commentId, editText) => {
     return [];
   }
 };
+export const deleteCommentAction = async (commentId) => {
+  "use server";
+
+  try {
+    const res = await fetch(`${process.env.DATABASE_API_URL}/comment`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentId),
+    });
+    const data = await res.json();
+
+    if (data.result.deletedCount > 0) {
+      revalidateTag("/ideas/:ideaId");
+    }
+    return data || [];
+  } catch (error) {
+    return [];
+  }
+};

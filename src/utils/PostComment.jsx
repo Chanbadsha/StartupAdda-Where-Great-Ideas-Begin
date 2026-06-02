@@ -1,5 +1,9 @@
 import { headers } from "next/headers";
-import { editCommentAction, postCommentAction } from "@/lib/actions";
+import {
+  deleteCommentAction,
+  editCommentAction,
+  postCommentAction,
+} from "@/lib/actions";
 import { auth } from "@/lib/auth";
 import Image from "next/image";
 import CommentsInfo from "@/components/shared/CommentsInfo";
@@ -29,6 +33,7 @@ const PostComment = async ({ comments, id }) => {
         <textarea
           name="comment"
           id="comment"
+          required
           placeholder="Share your thoughts about this startup idea..."
           className="
         min-h-30
@@ -72,6 +77,7 @@ const PostComment = async ({ comments, id }) => {
       <div className="space-y-5">
         {comments.map((comment, ind) => (
           <CommentsInfo
+            deleteCommentAction={deleteCommentAction}
             editCommentAction={editCommentAction}
             key={ind}
             comment={comment}

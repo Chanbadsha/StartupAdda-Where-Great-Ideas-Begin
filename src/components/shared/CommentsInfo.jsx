@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { AlertDialog, Button } from "@heroui/react";
+import toast from "react-hot-toast";
 
-const CommentsInfo = ({ editCommentAction, comment, onUpdate }) => {
+const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(comment?.comment);
 
@@ -21,8 +23,17 @@ const CommentsInfo = ({ editCommentAction, comment, onUpdate }) => {
   };
 
   const handleSave = async () => {
+    if (!editText.trim()) {
+      toast("Comment cannot be empty ", {
+        icon: "❌",
+      });
+      setIsEditing(false);
+      return;
+    }
+
     await editCommentAction(comment._id, editText);
     setIsEditing(false);
+    toast.success("Comment updated successfully");
   };
 
   const handleCancel = () => {
@@ -57,12 +68,54 @@ const CommentsInfo = ({ editCommentAction, comment, onUpdate }) => {
         {/* Actions */}
         <div className="flex gap-2">
           {!isEditing ? (
-            <button
-              onClick={() => setIsEditing(true)}
-              className="rounded-xl border px-3 py-1.5 text-xs"
-            >
-              Edit
-            </button>
+            <>
+              {" "}
+              <button
+                onClick={() => setIsEditing(true)}
+                className="rounded-xl border px-3 py-1.5 text-xs"
+              >
+                Edit
+              </button>{" "}
+              <AlertDialog>
+                <Button
+                  className="rounded-xl border px-3 py-1.5 text-xs"
+                  variant="danger"
+                >
+                  Delete{" "}
+                </Button>
+                <AlertDialog.Backdrop>
+                  <AlertDialog.Container>
+                    <AlertDialog.Dialog className="sm:max-w-[400px]">
+                      <AlertDialog.CloseTrigger />
+                      <AlertDialog.Header>
+                        <AlertDialog.Icon status="danger" />
+                        <AlertDialog.Heading>
+                          Delete this comment permanently?
+                        </AlertDialog.Heading>
+                      </AlertDialog.Header>
+                      <AlertDialog.Body>
+                        <p>
+                          This action will permanently remove this comment. It
+                          cannot be recovered once deleted.
+                        </p>
+                      </AlertDialog.Body>
+                      <AlertDialog.Footer>
+                        <Button slot="close" variant="tertiary">
+                          Cancel
+                        </Button>
+                        <Button
+                          onClick={() => deleteCommentAction(comment)}
+                          slot="close"
+                          variant="danger"
+                        >
+                          Delete
+                        </Button>
+                      </AlertDialog.Footer>
+                    </AlertDialog.Dialog>
+                  </AlertDialog.Container>
+                </AlertDialog.Backdrop>
+              </AlertDialog>
+            </>
           ) : (
             <>
               <button
@@ -89,6 +142,7 @@ const CommentsInfo = ({ editCommentAction, comment, onUpdate }) => {
           <p className="text-black/70">{comment?.comment}</p>
         ) : (
           <textarea
+            required
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
             className="w-full rounded-xl border p-3 text-sm outline-none focus:border-violet-300"
