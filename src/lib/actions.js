@@ -1,23 +1,5 @@
 import { revalidateTag } from "next/cache";
 
-export const PostData = async (Postdata) => {
-  "use server";
-  try {
-    const res = await fetch(`http://localhost:5000/ideas`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Postdata),
-    });
-    const data = await res.json();
-    revalidateTag("/ideas");
-    return data || [];
-  } catch (error) {
-    return [];
-  }
-};
-
 export const postCommentAction = async (commentInfo, formData) => {
   "use server";
 

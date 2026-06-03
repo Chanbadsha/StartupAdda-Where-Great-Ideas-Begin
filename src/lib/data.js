@@ -1,6 +1,8 @@
 export const GetAllData = async () => {
   try {
-    const res = await fetch(`${process.env.DATABASE_API_URL}/ideas`);
+    const res = await fetch(`${process.env.DATABASE_API_URL}/ideas`, {
+      cache: "no-store",
+    });
     const data = await res.json();
     return data || [];
   } catch (error) {
