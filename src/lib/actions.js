@@ -21,6 +21,7 @@ export const postCommentAction = async (commentInfo, formData) => {
 
     if (data.data.acknowledged === true) {
       revalidateTag("/ideas/:ideaId");
+      revalidateTag("/ideas");
     }
     return data || [];
   } catch (error) {
@@ -95,6 +96,7 @@ export const deleteCommentAction = async (commentId) => {
 
     if (data.result.deletedCount > 0) {
       revalidateTag("/ideas/:ideaId");
+      revalidateTag("/ideas");
     }
     return data || [];
   } catch (error) {
@@ -117,6 +119,7 @@ export const deleteIdeaAction = async (ideaId) => {
 
     if (data.result.deletedCount > 0) {
       revalidateTag("/idea/:creatorId");
+      revalidateTag("/ideas");
     }
     return data || [];
   } catch (error) {
