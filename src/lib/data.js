@@ -32,6 +32,7 @@ export const GetDataById = async (id) => {
 export const PostData = async (Postdata) => {
   try {
     const res = await fetch(`http://localhost:5000/ideas`, {
+      cache: "no-store",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,6 +40,7 @@ export const PostData = async (Postdata) => {
       body: JSON.stringify(Postdata),
     });
     const data = await res.json();
+
     return data || [];
   } catch (error) {
     return [];
