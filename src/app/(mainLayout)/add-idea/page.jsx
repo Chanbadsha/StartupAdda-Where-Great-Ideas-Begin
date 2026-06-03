@@ -6,6 +6,8 @@ import Link from "next/link";
 import { ArrowLeft, ImagePlus } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { PostData } from "@/lib/data";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const AddIdeaPage = () => {
   const { data } = authClient.useSession();
@@ -21,6 +23,7 @@ const AddIdeaPage = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const toastId = toast.loading("Publishing your startup idea...");
     const formattedData = {
       ...data,
 
@@ -38,6 +41,7 @@ const AddIdeaPage = () => {
       gallery: [],
       engagement: {},
       comments: [],
+      createdAt: new Date(),
       creator: {
         name: users?.name,
         username: getUserName(users?.name),
@@ -50,6 +54,13 @@ const AddIdeaPage = () => {
     };
 
     const postInfo = await PostData(formattedData);
+
+    if (postInfo.data.acknowledged) {
+      toast.success("Idea published successfully!", { id: toastId });
+      redirect("/ideas");
+    } else {
+      toast.error("Failed to publish idea.", { id: toastId });
+    }
   };
   return (
     <main className="relative min-h-screen bg-slate-50 overflow-hidden">

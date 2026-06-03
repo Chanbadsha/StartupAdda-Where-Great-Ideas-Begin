@@ -7,6 +7,18 @@ export const GetAllData = async () => {
     return [];
   }
 };
+export const GetAllDataByCreator = async (creatorId) => {
+  console.log(creatorId);
+  try {
+    const res = await fetch(
+      `${process.env.DATABASE_API_URL}/idea/${creatorId}`,
+    );
+    const data = await res.json();
+    return data || [];
+  } catch (error) {
+    return [];
+  }
+};
 
 export const GetDataById = async (id) => {
   try {
@@ -33,8 +45,3 @@ export const PostData = async (Postdata) => {
     return [];
   }
 };
-
-// // Post or Edit Comment
-// export const CommentPost = async (CommentInfo) => {
-
-// };

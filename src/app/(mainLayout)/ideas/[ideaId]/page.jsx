@@ -34,8 +34,7 @@ const IdeasDetailsPage = async ({ params }) => {
     gallery,
     creator,
     engagement,
-    startupPotential,
-    status,
+
     comments,
   } = idea;
 
@@ -253,7 +252,7 @@ const IdeasDetailsPage = async ({ params }) => {
 
             {/* Solution Points */}
             <ul className="mb-6 grid gap-3">
-              {proposedSolution.map((solution, ind) => (
+              {proposedSolution?.map((solution, ind) => (
                 <li
                   key={ind}
                   className="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 text-sm text-black/70 shadow-sm"
@@ -285,7 +284,7 @@ const IdeasDetailsPage = async ({ params }) => {
 
               {/* Audience Tags */}
               <ul className="flex flex-wrap gap-3">
-                {targetAudience.map((Audience, ind) => (
+                {targetAudience?.map((Audience, ind) => (
                   <li key={ind}>
                     <span
                       className="
@@ -315,7 +314,7 @@ const IdeasDetailsPage = async ({ params }) => {
               <p className="text-sm font-medium text-white/70">Funding Needs</p>
 
               <h2 className="mt-2 text-4xl font-bold tracking-tight">
-                ${estimatedBudget.amount}
+                ${estimatedBudget?.amount}
               </h2>
 
               <p className="mt-1 text-sm text-white/70">
@@ -327,14 +326,14 @@ const IdeasDetailsPage = async ({ params }) => {
                   <p className="text-xs text-white/60">Funding Stage</p>
 
                   <p className="font-semibold">
-                    {estimatedBudget.fundingStage}
+                    {estimatedBudget?.fundingStage}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-xs text-white/60">Timeline</p>
 
-                  <p className="font-semibold">{estimatedBudget.timeline}</p>
+                  <p className="font-semibold">{estimatedBudget?.timeline}</p>
                 </div>
               </div>
             </div>
@@ -354,7 +353,7 @@ const IdeasDetailsPage = async ({ params }) => {
               </div>
 
               <div className="rounded-2xl bg-violet-50 px-4 py-2 text-sm font-medium text-violet-700">
-                {comments.length} Comments
+                {comments?.length} Comments
               </div>
             </div>
 

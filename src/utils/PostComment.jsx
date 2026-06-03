@@ -5,7 +5,7 @@ import {
   postCommentAction,
 } from "@/lib/actions";
 import { auth } from "@/lib/auth";
-import Image from "next/image";
+
 import CommentsInfo from "@/components/shared/CommentsInfo";
 
 const PostComment = async ({ comments, id }) => {

@@ -75,3 +75,25 @@ export const deleteCommentAction = async (commentId) => {
     return [];
   }
 };
+export const deleteIdeaAction = async (ideaId) => {
+  "use server";
+
+  try {
+    const ideaID = { ideaId };
+    const res = await fetch(`${process.env.DATABASE_API_URL}/idea`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ideaID),
+    });
+    const data = await res.json();
+
+    if (data.result.deletedCount > 0) {
+      revalidateTag("/idea/:creatorId");
+    }
+    return data || [];
+  } catch (error) {
+    return [];
+  }
+};
