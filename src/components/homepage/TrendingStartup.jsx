@@ -31,8 +31,8 @@ const TrendingStartup = async () => {
       {/* Startup containers */}
       <div>
         {startUpIdea.length > 0 ? (
-          <div className="grid mt-4 grid-cols-3 grid-rows-2  gap-12">
-            {startUpIdea.map((idea, ind) => (
+          <div className="grid mt-4 lg:grid-cols-3 grid-rows-2 px-6 md:grid-cols-2 md:px-3  gap-12">
+            {startUpIdea.slice(0, 6).map((idea, ind) => (
               <StartUpCard key={ind} idea={idea} />
             ))}
           </div>

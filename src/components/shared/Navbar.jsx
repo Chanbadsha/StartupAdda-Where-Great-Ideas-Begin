@@ -137,7 +137,7 @@ const Navbar = () => {
                 </Link>
               </motion.div>
 
-              <span className="hidden md:block text-sm md:text-base font-medium text-gray-600 hover:text-purple-600 transition">
+              <span className="hidden lg:block text-sm md:text-base font-medium text-gray-600 hover:text-purple-600 transition">
                 <Badge.Anchor>
                   <motion.div
                     whileHover={{ rotate: [-10, 10, -10, 0] }}

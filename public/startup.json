@@ -1,110 +1,120 @@
 [
     {
-        "id": 1,
-        "ideaTitle": "Smart Classroom AI",
-        "shortDescription": "AI-powered system that enhances classroom learning experience.",
-        "detailedDescription": "Smart Classroom AI transforms traditional education by integrating real-time lecture transcription, automated note generation, and student engagement tracking. It helps teachers identify struggling students and improve overall learning outcomes using AI insights.",
-        "category": "Education",
-        "tags": [
-            "AI",
-            "EdTech",
-            "Classroom",
-            "Automation"
-        ],
-        "imageURL": "https://i.ibb.co.com/Cp2p9S2n/ai-startup.png",
-        "estimatedBudget": "8000-15000 USD",
-        "targetAudience": "Schools, Teachers, Students",
-        "problemStatement": "Traditional classrooms lack real-time personalization and feedback systems.",
-        "proposedSolution": "Use AI to analyze classroom interactions and provide real-time learning support and insights."
-    },
-    {
-        "id": 2,
-        "ideaTitle": "AI Freelance Matcher",
-        "shortDescription": "Platform that connects freelancers with perfect projects using AI.",
-        "detailedDescription": "AI Freelance Matcher uses intelligent algorithms to match freelancers with projects based on skills, experience, and past performance. It reduces hiring time and improves project success rates by ensuring better fit between clients and freelancers.",
-        "category": "Tech",
-        "tags": [
-            "Freelance",
-            "AI",
-            "Marketplace",
-            "Jobs"
-        ],
-        "imageURL": "https://i.ibb.co.com/fzZsDpqV/network.png",
-        "estimatedBudget": "10000-25000 USD",
-        "targetAudience": "Freelancers, Agencies, Businesses",
-        "problemStatement": "Freelancers struggle to find relevant and high-quality job opportunities.",
-        "proposedSolution": "Create an AI-based matching system that connects freelancers with ideal projects instantly."
-    },
-    {
-        "id": 3,
-        "ideaTitle": "EcoWaste Tracker",
-        "shortDescription": "Smart waste management system for cities and communities.",
-        "detailedDescription": "EcoWaste Tracker is a smart waste monitoring system that helps cities optimize waste collection using IoT sensors and AI analytics. It tracks waste levels in real-time and suggests efficient collection routes.",
-        "category": "Environment",
-        "tags": [
-            "IoT",
-            "AI",
-            "Sustainability",
-            "Smart City"
-        ],
-        "imageURL": "https://i.ibb.co.com/fzZsDpqV/network.png",
-        "estimatedBudget": "15000-40000 USD",
-        "targetAudience": "Municipalities, Governments, Waste Companies",
-        "problemStatement": "Waste collection systems are often inefficient and waste resources.",
-        "proposedSolution": "Use IoT sensors and AI routing to optimize waste collection and reduce operational costs."
-    },
-    {
-        "id": 4,
-        "ideaTitle": "AI Personal Finance Coach",
-        "shortDescription": "AI assistant that helps users manage money smarter.",
-        "detailedDescription": "This AI-powered finance coach analyzes spending habits, income, and financial goals to provide personalized budgeting tips, savings plans, and investment suggestions. It helps users improve financial discipline over time.",
-        "category": "Finance",
-        "tags": [
-            "AI",
-            "Finance",
-            "Budgeting",
-            "Savings"
-        ],
-        "imageURL": "https://i.ibb.co.com/SDbsWHsF/build.png",
-        "estimatedBudget": "5000-20000 USD",
-        "targetAudience": "Individuals, Young Professionals",
-        "problemStatement": "Most people struggle to manage personal finances effectively.",
-        "proposedSolution": "Provide AI-driven financial insights and personalized money management guidance."
-    },
-    {
-        "id": 5,
-        "ideaTitle": "SkillBridge Platform",
-        "shortDescription": "A platform where learners can trade and learn skills.",
-        "detailedDescription": "SkillBridge is a peer-to-peer learning platform that allows users to exchange skills. For example, someone can teach coding in exchange for design lessons. It promotes collaborative and cost-free learning.",
-        "category": "Education",
-        "tags": [
-            "Learning",
-            "Community",
-            "Skills",
-            "Exchange"
-        ],
-        "imageURL": "https://i.ibb.co.com/fzZsDpqV/network.png",
-        "estimatedBudget": "3000-12000 USD",
-        "targetAudience": "Students, Creators, Professionals",
-        "problemStatement": "Skill learning platforms are often expensive and one-sided.",
-        "proposedSolution": "Enable users to learn by exchanging skills directly in a community-driven system."
-    },
-    {
-        "id": 6,
-        "ideaTitle": "AI Content Studio",
-        "shortDescription": "All-in-one AI tool for creating marketing content.",
-        "detailedDescription": "AI Content Studio helps businesses generate blogs, ads, social media posts, and marketing copies using AI. It includes templates, tone customization, and SEO optimization to boost digital marketing performance.",
+        "_id": "6a0d15ba348376c1b0dc5225",
+        "ideaTitle": "AI Resume Analyzer",
+        "tagline": "Smart resume feedback powered by artificial intelligence",
+        "shortDescription": "An AI-powered platform that analyzes resumes and provides personalized feedback to improve job success rates.",
+        "detailedDescription": "AI Resume Analyzer helps job seekers improve their resumes using advanced NLP and ATS optimization. It scans resumes, highlights weak points, suggests improvements, and compares against job descriptions to increase interview chances.",
         "category": "AI",
         "tags": [
             "AI",
-            "Content",
-            "Marketing",
-            "SaaS"
+            "Resume",
+            "Career",
+            "Job Search",
+            "NLP"
         ],
-        "imageURL": "https://i.ibb.co.com/N2bBpX7N/growth.png",
-        "estimatedBudget": "12000-30000 USD",
-        "targetAudience": "Marketers, Agencies, Startups",
-        "problemStatement": "Creating high-quality marketing content is time-consuming and expensive.",
-        "proposedSolution": "Use AI to automate content creation with high-quality, optimized outputs."
+        "problemStatement": "Job seekers struggle with ATS-friendly resumes and often get rejected before reaching interviews.",
+        "proposedSolution": [
+            "AI-based resume scoring system",
+            "ATS optimization suggestions",
+            "Job description matching",
+            "Personalized improvement tips"
+        ],
+        "targetAudience": [
+            "Job seekers",
+            "Fresh graduates",
+            "Professionals switching careers"
+        ],
+        "estimatedBudget": {
+            "min": 5000,
+            "max": 20000,
+            "currency": "USD"
+        },
+        "coverImage": "https://images.unsplash.com/photo-1552664730-d307ca884978",
+        "gallery": [
+            "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+            "https://images.unsplash.com/photo-1521791136064-7986c2920216"
+        ],
+        "creator": {
+            "name": "StartupAdda User",
+            "role": "Founder"
+        },
+        "engagement": {
+            "likes": 124,
+            "commentsCount": 18,
+            "views": 2400
+        },
+        "startupPotential": {
+            "score": 8.7,
+            "marketSize": "High",
+            "growthRate": "Fast"
+        },
+        "status": {
+            "stage": "MVP",
+            "visibility": "public"
+        },
+        "comments": [],
+        "relatedIdeas": [],
+        "createdAt": "2026-05-15T08:00:00Z",
+        "updatedAt": "2026-05-19T18:30:00Z"
+    },
+    {
+        "_id": "6a0d15ba348376c1b0dc5224",
+        "ideaTitle": "Smart Healthcare Assistant",
+        "tagline": "AI-powered personal health companion",
+        "shortDescription": "A virtual healthcare assistant for symptom tracking and AI health guidance.",
+        "detailedDescription": "This platform helps users track symptoms, get AI-based health suggestions, and connect with doctors when necessary. It uses machine learning to detect early health risks.",
+        "category": "HealthTech",
+        "tags": [
+            "AI",
+            "Health",
+            "Medical",
+            "Wellness",
+            "Diagnostics"
+        ],
+        "problemStatement": "People struggle to understand early symptoms and delay treatment.",
+        "proposedSolution": [
+            "Symptom tracking AI",
+            "Health risk prediction",
+            "Doctor recommendation system",
+            "Emergency alerts"
+        ],
+        "targetAudience": [
+            "General users",
+            "Patients with chronic diseases",
+            "Elderly people"
+        ],
+        "estimatedBudget": {
+            "min": 8000,
+            "max": 30000,
+            "currency": "USD"
+        },
+        "coverImage": "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
+        "gallery": [
+            "https://images.unsplash.com/photo-1584515933487-779824d29309",
+            "https://images.unsplash.com/photo-1580281657527-47f249e8f7e7"
+        ],
+        "creator": {
+            "name": "StartupAdda User",
+            "role": "Founder"
+        },
+        "engagement": {
+            "likes": 210,
+            "commentsCount": 34,
+            "views": 5200
+        },
+        "startupPotential": {
+            "score": 9.1,
+            "marketSize": "Very High",
+            "growthRate": "Very Fast"
+        },
+        "status": {
+            "stage": "Prototype",
+            "visibility": "public"
+        },
+        "comments": [],
+        "relatedIdeas": [],
+        "createdAt": "2026-05-14T11:20:00Z",
+        "updatedAt": "2026-05-18T10:00:00Z"
     }
 ]
