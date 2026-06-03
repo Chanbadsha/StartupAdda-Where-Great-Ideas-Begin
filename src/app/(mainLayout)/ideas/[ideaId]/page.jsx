@@ -1,7 +1,7 @@
 import { GetAllData, GetDataById } from "@/lib/data";
 import PostComment from "@/utils/PostComment";
 
-import { Avatar, Badge, Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import {
   Bookmark,
   Eye,
@@ -37,9 +37,6 @@ const IdeasDetailsPage = async ({ params }) => {
     startupPotential,
     status,
     comments,
-
-    createdAt,
-    updatedAt,
   } = idea;
 
   return (

@@ -1,4 +1,4 @@
-import { Card, Link, Button } from "@heroui/react";
+import { Card, Link } from "@heroui/react";
 import Image from "next/image";
 
 const StartUpCard = ({ idea }) => {

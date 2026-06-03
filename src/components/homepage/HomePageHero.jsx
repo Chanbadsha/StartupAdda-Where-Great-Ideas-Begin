@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { motion } from "motion/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -53,7 +53,15 @@ export const slideData = [
 ];
 const HomePageHero = () => {
   return (
-    <div className="container mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.7,
+        ease: "easeOut",
+      }}
+      className="container mx-auto"
+    >
       <Swiper
         spaceBetween={3}
         centeredSlides={true}
@@ -75,7 +83,7 @@ const HomePageHero = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 

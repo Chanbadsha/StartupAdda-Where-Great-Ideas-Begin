@@ -4,6 +4,8 @@ import Image from "next/image";
 import { AlertDialog, Button } from "@heroui/react";
 import toast from "react-hot-toast";
 
+import { motion, AnimatePresence } from "motion/react";
+
 const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(comment?.comment);
@@ -42,7 +44,14 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
   };
 
   return (
-    <div className="rounded-3xl border bg-[#fcfcfc] p-5">
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="rounded-3xl border bg-[#fcfcfc] p-5"
+    >
       {/* Top */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex gap-4">
@@ -70,12 +79,14 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
           {!isEditing ? (
             <>
               {" "}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsEditing(true)}
                 className="rounded-xl border px-3 py-1.5 text-xs"
               >
                 Edit
-              </button>{" "}
+              </motion.button>
               <AlertDialog>
                 <Button
                   className="rounded-xl border px-3 py-1.5 text-xs"
@@ -85,7 +96,7 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
                 </Button>
                 <AlertDialog.Backdrop>
                   <AlertDialog.Container>
-                    <AlertDialog.Dialog className="sm:max-w-[400px]">
+                    <AlertDialog.Dialog className="sm:max-w-100">
                       <AlertDialog.CloseTrigger />
                       <AlertDialog.Header>
                         <AlertDialog.Icon status="danger" />
@@ -118,12 +129,14 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
             </>
           ) : (
             <>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleSave}
                 className="rounded-xl bg-green-500 px-3 py-1.5 text-xs text-white"
               >
                 Save
-              </button>
+              </motion.button>
 
               <button
                 onClick={handleCancel}
@@ -138,19 +151,32 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
 
       {/* Comment Body */}
       <div className="mt-5">
-        {!isEditing ? (
-          <p className="text-black/70">{comment?.comment}</p>
-        ) : (
-          <textarea
-            required
-            value={editText}
-            onChange={(e) => setEditText(e.target.value)}
-            className="w-full rounded-xl border p-3 text-sm outline-none focus:border-violet-300"
-            rows={3}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          {!isEditing ? (
+            <motion.p
+              key="text"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-black/70"
+            >
+              {comment?.comment}
+            </motion.p>
+          ) : (
+            <motion.textarea
+              key="edit"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+              rows={3}
+              className="w-full rounded-xl border p-3 text-sm outline-none focus:border-violet-300"
+            />
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "motion/react";
 import { Button } from "@heroui/react";
 import Link from "next/link";
 
@@ -19,25 +21,53 @@ const Slide = ({ slideData }) => {
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-2xl space-y-5">
-        <span className="inline-block px-3 py-1 text-xs md:text-sm bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 max-w-2xl space-y-5"
+      >
+        <motion.span
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="inline-block px-3 py-1 text-xs md:text-sm bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white"
+        >
           {badge}
-        </span>
+        </motion.span>
 
-        <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="text-3xl md:text-5xl font-bold leading-tight text-white"
+        >
           {title}
-        </h2>
+        </motion.h2>
 
-        <p className="text-sm md:text-lg text-gray-200 leading-relaxed max-w-lg">
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-sm md:text-lg text-gray-200 leading-relaxed max-w-lg"
+        >
           {description}
-        </p>
+        </motion.p>
 
-        <Link href={href}>
-          <Button className="bg-linear-to-tr from-[#291ef1] to-[#544dd3] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-2xl hover:scale-[1.03] transition-all duration-300">
-            {cta}
-          </Button>
-        </Link>
-      </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+        >
+          <Link href={href}>
+            <Button className="bg-linear-to-tr from-[#291ef1] to-[#544dd3] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-2xl transition-all duration-300">
+              {cta}
+            </Button>
+          </Link>
+        </motion.div>
+      </motion.div>
 
       <div className="absolute bottom-0 left-0 w-full h-24 bg-linear-to-t from-black/40 to-transparent" />
     </div>
