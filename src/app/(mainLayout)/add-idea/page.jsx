@@ -50,7 +50,7 @@ const AddIdeaPage = () => {
         bio: users?.bio,
         id: users?.id,
       },
-      status: "pending",
+      status: "Published",
     };
 
     const postInfo = await PostData(formattedData);

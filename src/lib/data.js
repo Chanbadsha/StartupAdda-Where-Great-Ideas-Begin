@@ -8,7 +8,6 @@ export const GetAllData = async () => {
   }
 };
 export const GetAllDataByCreator = async (creatorId) => {
-  console.log(creatorId);
   try {
     const res = await fetch(
       `${process.env.DATABASE_API_URL}/idea/${creatorId}`,

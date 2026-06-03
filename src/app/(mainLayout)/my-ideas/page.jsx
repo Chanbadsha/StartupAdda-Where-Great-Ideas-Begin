@@ -1,6 +1,6 @@
 import HeroSection from "@/components/myIdeasPage/HeroSection";
 import MyIdeasPageMainSection from "@/components/myIdeasPage/MyIdeasPageMainSection";
-import { deleteIdeaAction } from "@/lib/actions";
+import { deleteIdeaAction, editIdeaAction } from "@/lib/actions";
 import { auth } from "@/lib/auth";
 import { GetAllDataByCreator } from "@/lib/data";
 import { headers } from "next/headers";
@@ -62,6 +62,7 @@ const MyIdeasPage = async () => {
         totalIdeas={totalIdeas}
         draftIdeas={draftIdeas}
         ideas={ideas}
+        editIdeaAction={editIdeaAction}
         deleteIdeaAction={deleteIdeaAction}
       />
     </main>

@@ -54,6 +54,32 @@ export const editCommentAction = async (commentId, editText) => {
     return [];
   }
 };
+export const editIdeaAction = async (ideaId, ideaEditText) => {
+  "use server";
+
+  const updateIdea = {
+    ideaId,
+    ideaEditText,
+  };
+
+  try {
+    const res = await fetch(`${process.env.DATABASE_API_URL}/idea`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateIdea),
+    });
+    const data = await res.json();
+
+    if (data.result.modifiedCount > 0) {
+      revalidateTag("/idea/:creatorId");
+    }
+    return data || [];
+  } catch (error) {
+    return [];
+  }
+};
 export const deleteCommentAction = async (commentId) => {
   "use server";
 

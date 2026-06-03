@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { AlertDialog, Button } from "@heroui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import EditModal from "./EditModal";
 export const fadeUp = {
   hidden: {
     opacity: 0,
@@ -48,6 +49,7 @@ const MyIdeasPageMainSection = ({
   draftIdeas,
   ideas,
   deleteIdeaAction,
+  editIdeaAction,
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -157,7 +159,7 @@ const MyIdeasPageMainSection = ({
                 </span>
 
                 <span
-                  className={`rounded-full px-3 py-1 text-xs font-medium ${
+                  className={`rounded-full capitalize px-3 py-1 text-xs font-medium ${
                     idea.status === "Published"
                       ? "bg-emerald-100 text-emerald-700"
                       : "bg-amber-100 text-amber-700"
@@ -181,13 +183,7 @@ const MyIdeasPageMainSection = ({
 
               <div className="mt-6  flex gap-3">
                 {/* Edit Button */}
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="flex-1 rounded-xl border border-violet-200 px-4 py-2 text-sm font-medium text-violet-700 transition hover:bg-violet-50"
-                >
-                  Edit
-                </motion.button>
+                <EditModal editIdeaAction={editIdeaAction} idea={idea} />
 
                 {/* Delete Button + Dialog */}
                 <motion.div
