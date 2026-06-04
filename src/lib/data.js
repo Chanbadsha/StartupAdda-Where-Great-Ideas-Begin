@@ -1,8 +1,18 @@
-export const GetAllData = async () => {
+export const GetAllData = async ({ search, category, sort } = {}) => {
   try {
-    const res = await fetch(`${process.env.DATABASE_API_URL}/ideas`, {
-      cache: "no-store",
-    });
+    const query = new URLSearchParams();
+
+    if (search) query.set("search", search);
+    if (category) query.set("category", category);
+    if (sort) query.set("sort", sort);
+
+    const res = await fetch(
+      `${process.env.DATABASE_API_URL}/ideas?${query.toString()}`,
+      {
+        cache: "no-store",
+      },
+    );
+
     const data = await res.json();
     return data || [];
   } catch (error) {

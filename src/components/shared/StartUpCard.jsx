@@ -31,7 +31,7 @@ const StartUpCard = ({ idea }) => {
       <div className="p-5 flex flex-col   flex-1 space-y-3">
         {/* Category + Budget */}
         <div className="flex justify-between items-center">
-          <span className="text-xs px-3 py-1 rounded-full bg-purple-100 text-purple-600 font-medium">
+          <span className="text-xs capitalize px-3 py-1 rounded-full bg-purple-100 text-purple-600 font-medium">
             {category}
           </span>
 

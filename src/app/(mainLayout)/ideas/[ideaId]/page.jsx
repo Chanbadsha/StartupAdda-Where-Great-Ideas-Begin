@@ -44,7 +44,7 @@ const IdeasDetailsPage = async ({ params }) => {
       <div className=" bg-linear-to-tr from-[#4847d4] to-[#6939d4] text-white px-12 py-16 rounded-lg my-8">
         <section className="space-y-5">
           {/* Category Badge */}
-          <span className="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur border border-white/10">
+          <span className="inline-flex capitalize items-center rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur border border-white/10">
             {category}
           </span>
 

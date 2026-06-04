@@ -2,8 +2,8 @@ import StartUpCard from "@/components/shared/StartUpCard";
 import { GetAllData } from "@/lib/data";
 import NoData from "./NoData";
 
-const IdeasList = async () => {
-  const startUpIdea = await GetAllData();
+const IdeasList = async ({ search, category, sort }) => {
+  const startUpIdea = await GetAllData({ search, category, sort });
 
   return (
     <>
