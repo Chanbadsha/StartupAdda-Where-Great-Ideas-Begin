@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NoData() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center container mx-auto px-6 w-full">
@@ -52,8 +54,10 @@ export default function NoData() {
 
           {/* Buttons */}
           <div className="mt-8 flex gap-4 sm:flex-row">
-            <button
-              className="
+            <Link href={"/ideas"}>
+              {" "}
+              <button
+                className="
                 rounded-2xl
                 bg-linear-to-r
                 from-violet-500
@@ -69,12 +73,13 @@ export default function NoData() {
                 hover:scale-105
                 hover:shadow-violet-500/30
               "
-            >
-              Explore Ideas
-            </button>
-
-            <button
-              className="
+              >
+                Explore Ideas
+              </button>
+            </Link>
+            <Link href={"/add-idea"}>
+              <button
+                className="
                 rounded-2xl
                 border border-black/10
                 bg-white/5
@@ -88,9 +93,10 @@ export default function NoData() {
                 duration-300
                 hover:bg-white/10
               "
-            >
-              Add New Idea
-            </button>
+              >
+                Add New Idea
+              </button>
+            </Link>
           </div>
         </div>
       </div>

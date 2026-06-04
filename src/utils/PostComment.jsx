@@ -82,6 +82,7 @@ const PostComment = async ({ comments, ideaTitle, id }) => {
             editCommentAction={editCommentAction}
             key={ind}
             comment={comment}
+            user={user}
           ></CommentsInfo>
         ))}
       </div>

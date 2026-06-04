@@ -6,7 +6,12 @@ import toast from "react-hot-toast";
 
 import { motion, AnimatePresence } from "motion/react";
 
-const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
+const CommentsInfo = ({
+  deleteCommentAction,
+  editCommentAction,
+  comment,
+  user,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(comment?.comment);
 
@@ -43,6 +48,8 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
     setIsEditing(false);
   };
 
+  const ownComment = user?.id == comment?.user?._id;
+
   return (
     <motion.div
       layout
@@ -75,78 +82,80 @@ const CommentsInfo = ({ deleteCommentAction, editCommentAction, comment }) => {
         </div>
 
         {/* Actions */}
-        <div className="flex gap-2">
-          {!isEditing ? (
-            <>
-              {" "}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsEditing(true)}
-                className="rounded-xl border px-3 py-1.5 text-xs"
-              >
-                Edit
-              </motion.button>
-              <AlertDialog>
-                <Button
+        {ownComment && (
+          <div className="flex gap-2">
+            {!isEditing ? (
+              <>
+                {" "}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsEditing(true)}
                   className="rounded-xl border px-3 py-1.5 text-xs"
-                  variant="danger"
                 >
-                  Delete{" "}
-                </Button>
-                <AlertDialog.Backdrop>
-                  <AlertDialog.Container>
-                    <AlertDialog.Dialog className="sm:max-w-100">
-                      <AlertDialog.CloseTrigger />
-                      <AlertDialog.Header>
-                        <AlertDialog.Icon status="danger" />
-                        <AlertDialog.Heading>
-                          Delete this comment permanently?
-                        </AlertDialog.Heading>
-                      </AlertDialog.Header>
-                      <AlertDialog.Body>
-                        <p>
-                          This action will permanently remove this comment. It
-                          cannot be recovered once deleted.
-                        </p>
-                      </AlertDialog.Body>
-                      <AlertDialog.Footer>
-                        <Button slot="close" variant="tertiary">
-                          Cancel
-                        </Button>
-                        <Button
-                          onClick={() => deleteCommentAction(comment)}
-                          slot="close"
-                          variant="danger"
-                        >
-                          Delete
-                        </Button>
-                      </AlertDialog.Footer>
-                    </AlertDialog.Dialog>
-                  </AlertDialog.Container>
-                </AlertDialog.Backdrop>
-              </AlertDialog>
-            </>
-          ) : (
-            <>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleSave}
-                className="rounded-xl bg-green-500 px-3 py-1.5 text-xs text-white"
-              >
-                Save
-              </motion.button>
+                  Edit
+                </motion.button>
+                <AlertDialog>
+                  <Button
+                    className="rounded-xl border px-3 py-1.5 text-xs"
+                    variant="danger"
+                  >
+                    Delete{" "}
+                  </Button>
+                  <AlertDialog.Backdrop>
+                    <AlertDialog.Container>
+                      <AlertDialog.Dialog className="sm:max-w-100">
+                        <AlertDialog.CloseTrigger />
+                        <AlertDialog.Header>
+                          <AlertDialog.Icon status="danger" />
+                          <AlertDialog.Heading>
+                            Delete this comment permanently?
+                          </AlertDialog.Heading>
+                        </AlertDialog.Header>
+                        <AlertDialog.Body>
+                          <p>
+                            This action will permanently remove this comment. It
+                            cannot be recovered once deleted.
+                          </p>
+                        </AlertDialog.Body>
+                        <AlertDialog.Footer>
+                          <Button slot="close" variant="tertiary">
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={() => deleteCommentAction(comment)}
+                            slot="close"
+                            variant="danger"
+                          >
+                            Delete
+                          </Button>
+                        </AlertDialog.Footer>
+                      </AlertDialog.Dialog>
+                    </AlertDialog.Container>
+                  </AlertDialog.Backdrop>
+                </AlertDialog>
+              </>
+            ) : (
+              <>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleSave}
+                  className="rounded-xl bg-green-500 px-3 py-1.5 text-xs text-white"
+                >
+                  Save
+                </motion.button>
 
-              <button
-                onClick={handleCancel}
-                className="rounded-xl border px-3 py-1.5 text-xs"
-              >
-                Cancel
-              </button>
-            </>
-          )}
-        </div>
+                <button
+                  onClick={handleCancel}
+                  className="rounded-xl border px-3 py-1.5 text-xs"
+                >
+                  Cancel
+                </button>
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Comment Body */}
