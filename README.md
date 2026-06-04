@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# StartupAdda
 
-## Getting Started
+A modern startup idea sharing and discovery platform where users can create, explore, and manage startup ideas with advanced filtering, authentication, and real-time interactions.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+StartupAdda is a full-stack web application designed to help users share and discover startup ideas, apply filters, and engage through comments. It also includes a personal dashboard for managing ideas and profile information.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+### Frontend
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- HeroUI
+- Framer Motion
+- Swiper
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Backend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js
+- Express.js
+- MongoDB
 
-## Deploy on Vercel
+### Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- BetterAuth (authClient)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tools & Libraries
+
+- React Hot Toast
+- REST API integration
+
+---
+
+## Features
+
+### Authentication
+
+- User registration and login
+- Session-based authentication
+- Protected routes
+
+### Idea Management
+
+- Create new startup ideas
+- Edit existing ideas
+- Delete ideas
+- View detailed idea pages
+
+### Search & Filtering
+
+- Search ideas by keyword
+- Filter by category
+- Sort by newest or oldest
+- URL-based query handling
+
+### Comments System
+
+- Add comments on ideas
+- Edit comments
+- Delete comments with confirmation
+
+### Dashboard
+
+- Manage user-created ideas
+- Profile management
+- Access personal activity
+
+### UI/UX
+
+- Responsive design
+- Modern card layouts
+- Smooth animations
+- Loading states with Suspense
+
+---
