@@ -40,7 +40,7 @@ const RegisterPage = () => {
         router.push("/");
       }, 800);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       toast("Something went wrong", { id: toastId, icon: "❌" });
     }
   };
@@ -68,7 +68,7 @@ const RegisterPage = () => {
 
       router.push("/");
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("Something went wrong", { id: toastId });
     }
   };

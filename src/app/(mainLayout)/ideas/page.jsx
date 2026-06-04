@@ -29,7 +29,7 @@ const categories = [
 ];
 const IdeasPage = async (props) => {
   const searchParams = await props.searchParams;
-  console.log(searchParams);
+
   const search = searchParams?.search || "";
   const category = searchParams?.category || "";
   const sort = searchParams?.sort || "desc";

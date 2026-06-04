@@ -7,11 +7,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { redirect, useRouter } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
+  const next = searchParams.get("next") || "/";
   const {
     register,
     handleSubmit,
@@ -36,6 +39,9 @@ const LoginPage = () => {
         return;
       } else {
         toast.success("Welcome back to StartupAdda!", { id: toastId });
+        // ✅ redirect to desired route
+
+        router.push(next);
       }
     } catch (error) {}
   };
@@ -57,7 +63,7 @@ const LoginPage = () => {
         toast.success("Login successful!", { id: toastId });
       }, 200);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("Something went wrong", { id: toastId });
     }
   };
