@@ -357,7 +357,11 @@ const IdeasDetailsPage = async ({ params }) => {
               </div>
             </div>
 
-            <PostComment comments={comments || []} id={_id} />
+            <PostComment
+              comments={comments || []}
+              ideaTitle={ideaTitle}
+              id={_id}
+            />
           </section>
         </section>
         {/* Right Sidebar */}

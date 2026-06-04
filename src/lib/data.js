@@ -21,6 +21,16 @@ export const GetAllDataByCreator = async (creatorId) => {
   }
 };
 
+export const GetCommentById = async (id) => {
+  try {
+    const res = await fetch(`${process.env.DATABASE_API_URL}/comment/${id}`);
+    const data = await res.json();
+
+    return data || [];
+  } catch (error) {
+    return [];
+  }
+};
 export const GetDataById = async (id) => {
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/ideas/${id}`);
@@ -33,7 +43,7 @@ export const GetDataById = async (id) => {
 
 export const PostData = async (Postdata) => {
   try {
-    const res = await fetch(`http://localhost:5000/ideas`, {
+    const res = await fetch(`${process.env.DATABASE_API_URL}/ideas`, {
       cache: "no-store",
       method: "POST",
       headers: {

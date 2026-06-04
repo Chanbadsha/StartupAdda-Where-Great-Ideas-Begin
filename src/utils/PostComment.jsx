@@ -8,7 +8,7 @@ import { auth } from "@/lib/auth";
 
 import CommentsInfo from "@/components/shared/CommentsInfo";
 
-const PostComment = async ({ comments, id }) => {
+const PostComment = async ({ comments, ideaTitle, id }) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -17,6 +17,7 @@ const PostComment = async ({ comments, id }) => {
   const commentInfo = {
     userId: user?.id,
     postId: id,
+    ideaTitle,
   };
 
   const postCommentActionWrapper = async (formData) => {

@@ -48,6 +48,13 @@ const navLinks = [
     private: true,
     authOnly: true,
   },
+  {
+    name: "myInteractions",
+    path: "/my-interactions",
+    title: "My Interactions ",
+    private: true,
+    authOnly: true,
+  },
   ,
 ];
 
@@ -129,9 +136,13 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-4">
               {/* Idea Post Button */}
-              <motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.97 }}>
+              <motion.div
+                className="hidden lg:flex"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <Link className={`no-underline`} href="/add-idea">
-                  <Button className="bg-linear-to-tr from-[#160beb] to-[#544dd3] text-white font-medium px-4 py-2 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300">
+                  <Button className=" bg-linear-to-tr from-[#160beb] to-[#544dd3] text-white font-medium px-4 py-2 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-300">
                     Post Idea
                   </Button>
                 </Link>
