@@ -8,19 +8,23 @@ import { authClient } from "@/lib/auth-client";
 import { PostData } from "@/lib/data";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
+import Loading from "@/app/loading";
 
 const AddIdeaPage = () => {
-  const { data } = authClient.useSession();
-  const users = data?.user;
-
-  const getUserName = (name) => {
-    return `@${name.toLowerCase().trim().split(" ").join(".")}`;
-  };
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { data, isPending } = authClient.useSession();
+  const users = data?.user;
+  if (isPending) {
+    return <Loading />;
+  }
+  const getUserName = (name) => {
+    return `@${name.toLowerCase().trim().split(" ").join(".")}`;
+  };
 
   const onSubmit = async (data) => {
     const toastId = toast.loading("Publishing your startup idea...");

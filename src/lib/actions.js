@@ -11,6 +11,7 @@ export const postCommentAction = async (commentInfo, formData) => {
 
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/comment`, {
+      cache: "no-store",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,6 +40,7 @@ export const editCommentAction = async (commentId, editText) => {
 
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/comment`, {
+      cache: "no-store",
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -65,6 +67,7 @@ export const editIdeaAction = async (ideaId, ideaEditText) => {
 
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/idea`, {
+      cache: "no-store",
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -86,6 +89,7 @@ export const deleteCommentAction = async (commentId) => {
 
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/comment`, {
+      cache: "no-store",
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -109,6 +113,7 @@ export const deleteIdeaAction = async (ideaId) => {
   try {
     const ideaID = { ideaId };
     const res = await fetch(`${process.env.DATABASE_API_URL}/idea`, {
+      cache: "no-store",
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

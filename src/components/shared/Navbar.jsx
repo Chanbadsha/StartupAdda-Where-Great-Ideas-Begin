@@ -10,6 +10,7 @@ import { ArrowUpRightFromSquare, Bell, CircleUserRound } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 import toast from "react-hot-toast";
+import Loading from "@/app/loading";
 
 const navLinks = [
   {
@@ -61,9 +62,11 @@ const navLinks = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { data: session } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession();
   const user = session?.user || null;
-
+  if (isPending) {
+    return <Loading />;
+  }
   const handleLogout = async () => {
     await authClient.signOut();
     toast.success("You have been signed out");
