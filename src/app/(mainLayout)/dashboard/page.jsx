@@ -20,21 +20,38 @@ const DashboardPage = () => {
     return <Loading />;
   }
 
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   const handleUpdate = async () => {
     try {
       setLoading(true);
-
-      const res = await fetch("/api/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, image }),
-      });
-
-      if (!res.ok) throw new Error();
-
+      if (image.length == 0 && name.length == 0) {
+        return toast("Please provide a name or profile image to update.");
+      }
+      if (image.length > 0) {
+        if (!isValidUrl(image)) {
+          toast.error("Please enter a valid image URL");
+          return;
+        }
+        await authClient.updateUser({
+          image: image,
+        });
+      }
+      if (name.length > 0) {
+        await authClient.updateUser({
+          name: name,
+        });
+      }
       toast.success("Profile updated successfully");
     } catch {
-      toast.error("Failed to update profile");
+      toast("Failed to update profile");
     } finally {
       setLoading(false);
     }

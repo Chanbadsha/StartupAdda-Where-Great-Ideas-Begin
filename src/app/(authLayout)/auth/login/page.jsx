@@ -15,6 +15,7 @@ const LoginPage = () => {
   const searchParams = useSearchParams();
 
   const next = searchParams.get("next") || "/";
+
   const {
     register,
     handleSubmit,
@@ -29,7 +30,7 @@ const LoginPage = () => {
         email: data?.email,
         password: data?.password,
         rememberMe: true,
-        callbackURL: process.env.BETTER_AUTH_URL,
+        callbackURL: next,
       });
       if (error) {
         toast(error?.message || "Operation failed ", {
@@ -52,6 +53,7 @@ const LoginPage = () => {
     try {
       const data = await authClient.signIn.social({
         provider: "google",
+        callbackURL: next,
       });
 
       if (!data) {

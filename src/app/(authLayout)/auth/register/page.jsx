@@ -6,7 +6,7 @@ import { Eye, EyeOff, Lightbulb, Rocket, Users } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +18,10 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const next = searchParams.get("next") || "login";
+
   const onSubmit = async (data) => {
     const toastId = toast.loading("Creating account...");
 
@@ -35,9 +39,14 @@ const RegisterPage = () => {
         return;
       }
 
-      toast.success("Account created successfully!", { id: toastId });
+      toast.success(
+        "Account created successfully. Please sign in to continue.",
+        {
+          id: toastId,
+        },
+      );
       setTimeout(() => {
-        router.push("/");
+        router.push(next);
       }, 800);
     } catch (err) {
       // console.error(err);
