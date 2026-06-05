@@ -1,14 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ImagePlus } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { PostData } from "@/lib/data";
-import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import Loading from "@/app/loading";
+import { redirect } from "next/navigation";
 
 const AddIdeaPage = () => {
   const {
@@ -59,7 +58,7 @@ const AddIdeaPage = () => {
 
     const postInfo = await PostData(formattedData);
 
-    if (postInfo.data.acknowledged) {
+    if (postInfo?.data?.insertedId) {
       toast.success("Idea published successfully!", { id: toastId });
       redirect("/ideas");
     } else {
