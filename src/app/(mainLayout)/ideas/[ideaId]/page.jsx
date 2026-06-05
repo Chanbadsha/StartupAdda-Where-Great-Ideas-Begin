@@ -172,10 +172,10 @@ const IdeasDetailsPage = async ({ params }) => {
           <div className="group my-6 relative overflow-hidden rounded-3xl">
             {/* Image */}
             <Image
-              src={coverImage}
+              src={coverImage || "https://i.ibb.co.com/3mzffnvm/user.jpg"}
               width={1200}
               height={800}
-              alt={ideaTitle}
+              alt={ideaTitle || "Ideatitle"}
               className="h-105 w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
 
@@ -497,7 +497,10 @@ const IdeasDetailsPage = async ({ params }) => {
           "
                   >
                     <Image
-                      src={idea?.coverImage}
+                      src={
+                        idea?.coverImage ||
+                        "https://i.ibb.co.com/3mzffnvm/user.jpg"
+                      }
                       alt={idea?.ideaTitle}
                       width={100}
                       height={100}

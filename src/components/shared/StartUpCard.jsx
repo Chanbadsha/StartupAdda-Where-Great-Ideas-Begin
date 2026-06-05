@@ -19,7 +19,7 @@ const StartUpCard = ({ idea }) => {
 
       <div className="relative h-52 mt-2 overflow-hidden rounded-lg  ">
         <Image
-          src={coverImage}
+          src={coverImage || ""}
           alt={ideaTitle}
           width={600}
           className="h-full group-hover:scale-110  duration-700 absolute top-0 left-0 w-full rounded-lg bg-cover bg-center"
