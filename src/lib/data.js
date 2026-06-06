@@ -1,29 +1,5 @@
-export const PostData = async (postData) => {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DATABASE_API_URL}/ideas`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      },
-    );
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      console.log("Backend Error Response:", data);
-      throw new Error(data.message || "Failed to create idea");
-    }
-
-    return data;
-  } catch (error) {
-    console.error("PostData Error:", error.message);
-    return null;
-  }
-};
+import { headers } from "next/headers";
+import { auth } from "./auth";
 
 export const GetAllData = async ({ search, category, sort } = {}) => {
   try {
@@ -47,9 +23,17 @@ export const GetAllData = async ({ search, category, sort } = {}) => {
   }
 };
 export const GetAllDataByCreator = async (creatorId) => {
+  "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
+
   try {
     const res = await fetch(
       `${process.env.DATABASE_API_URL}/idea/${creatorId}`,
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
     );
     const data = await res.json();
     return data || [];
@@ -59,8 +43,14 @@ export const GetAllDataByCreator = async (creatorId) => {
 };
 
 export const GetCommentById = async (id) => {
+  "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
+
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/comment/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       cache: "no-store",
     });
     const data = await res.json();
@@ -71,8 +61,14 @@ export const GetCommentById = async (id) => {
   }
 };
 export const GetDataById = async (id) => {
+  "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
+
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/ideas/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
       cache: "no-store",
     });
     const data = await res.json();

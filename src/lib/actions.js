@@ -1,7 +1,11 @@
 import { revalidateTag } from "next/cache";
+import { auth } from "./auth";
+import { headers } from "next/headers";
 
 export const postCommentAction = async (commentInfo, formData) => {
   "use server";
+
+  const { token } = await auth.api.getToken({ headers: await headers() });
 
   const { comment } = Object.fromEntries(formData.entries());
   const commentList = {
@@ -14,6 +18,8 @@ export const postCommentAction = async (commentInfo, formData) => {
       cache: "no-store",
       method: "POST",
       headers: {
+        authorization: `Bearer ${token}`,
+
         "Content-Type": "application/json",
       },
       body: JSON.stringify(commentList),
@@ -32,6 +38,7 @@ export const postCommentAction = async (commentInfo, formData) => {
 
 export const editCommentAction = async (commentId, editText) => {
   "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
 
   const updateComment = {
     commentId,
@@ -43,6 +50,8 @@ export const editCommentAction = async (commentId, editText) => {
       cache: "no-store",
       method: "PATCH",
       headers: {
+        authorization: `Bearer ${token}`,
+
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updateComment),
@@ -59,6 +68,7 @@ export const editCommentAction = async (commentId, editText) => {
 };
 export const editIdeaAction = async (ideaId, ideaEditText) => {
   "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
 
   const updateIdea = {
     ideaId,
@@ -70,6 +80,8 @@ export const editIdeaAction = async (ideaId, ideaEditText) => {
       cache: "no-store",
       method: "PATCH",
       headers: {
+        authorization: `Bearer ${token}`,
+
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updateIdea),
@@ -86,12 +98,15 @@ export const editIdeaAction = async (ideaId, ideaEditText) => {
 };
 export const deleteCommentAction = async (commentId) => {
   "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
 
   try {
     const res = await fetch(`${process.env.DATABASE_API_URL}/comment`, {
       cache: "no-store",
       method: "DELETE",
       headers: {
+        authorization: `Bearer ${token}`,
+
         "Content-Type": "application/json",
       },
       body: JSON.stringify(commentId),
@@ -109,6 +124,7 @@ export const deleteCommentAction = async (commentId) => {
 };
 export const deleteIdeaAction = async (ideaId) => {
   "use server";
+  const { token } = await auth.api.getToken({ headers: await headers() });
 
   try {
     const ideaID = { ideaId };
@@ -116,6 +132,8 @@ export const deleteIdeaAction = async (ideaId) => {
       cache: "no-store",
       method: "DELETE",
       headers: {
+        authorization: `Bearer ${token}`,
+
         "Content-Type": "application/json",
       },
       body: JSON.stringify(ideaID),

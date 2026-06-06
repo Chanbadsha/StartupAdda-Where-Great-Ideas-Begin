@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { ArrowLeft, ImagePlus } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import { PostData } from "@/lib/data";
+
 import toast from "react-hot-toast";
 import Loading from "@/app/loading";
 import { redirect } from "next/navigation";
+import { PostData } from "@/lib/clientSide";
 
 const AddIdeaPage = () => {
   const {
