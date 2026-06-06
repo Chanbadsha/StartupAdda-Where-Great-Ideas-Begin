@@ -11,7 +11,7 @@ import { authClient } from "@/lib/auth-client";
 
 import toast from "react-hot-toast";
 import Loading from "@/app/loading";
-
+import { useRouter } from "next/navigation";
 const navLinks = [
   {
     name: "home",
@@ -61,7 +61,7 @@ const navLinks = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const user = session?.user || null;
   if (isPending) {
@@ -70,6 +70,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     await authClient.signOut();
     toast.success("You have been signed out");
+    router.refresh();
   };
 
   return (
