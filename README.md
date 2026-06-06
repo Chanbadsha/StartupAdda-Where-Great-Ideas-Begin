@@ -2,6 +2,11 @@
 
 A modern startup idea sharing and discovery platform where users can create, explore, and manage startup ideas with advanced filtering, authentication, and real-time interactions.
 
+## Live Demo
+
+Check out the live project here:  
+ https://startup-adda.vercel.app/
+
 ---
 
 ## Overview
